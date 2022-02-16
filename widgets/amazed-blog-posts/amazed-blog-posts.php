@@ -34,20 +34,20 @@ class Amazed_Blog_Posts_Widget extends SiteOrigin_Widget {
         ),
         'post' => array(
           'type' => 'posts',
-          'label' => __( 'Post Query', 'ra-post-carousel-widget' )
+          'label' => __( 'Post Query', 'amazed-blog-so-widgets' )
         ),
         'structure' => array(
           'type' => 'section',
-          'label' => __( 'Post Settings', 'ra-post-carousel-widget' ),
+          'label' => __( 'Post Settings', 'amazed-blog-so-widgets' ),
           'hide' => true,
           'fields' => array(
             'display' => array(
               'type' => 'checkboxes',
-              'label' => __( 'Display Settings', 'ra-post-carousel-widget' ),
+              'label' => __( 'Display Settings', 'amazed-blog-so-widgets' ),
               'options' => array(
-                'thumbnail' => __( 'Post Thumbnail', 'ra-post-carousel-widget' ),
-                'title' => __( 'Post Title', 'ra-post-carousel-widget' ),
-                'content' => __( 'Post Content', 'ra-post-carousel-widget' )
+                'thumbnail' => __( 'Post Thumbnail', 'amazed-blog-so-widgets' ),
+                'title' => __( 'Post Title', 'amazed-blog-so-widgets' ),
+                'content' => __( 'Post Content', 'amazed-blog-so-widgets' )
               ),
               'default' => 'thumbnail',
               'state_emitter' => array(
@@ -57,7 +57,7 @@ class Amazed_Blog_Posts_Widget extends SiteOrigin_Widget {
             ),
             'size' => array(
               'type' => 'image-size',
-              'label' => __( 'Thumbnail Size', 'ra-post-carousel-widget' ),
+              'label' => __( 'Thumbnail Size', 'amazed-blog-so-widgets' ),
               'custom_size' => true,
               'state_handler' => array(
                 'display[thumbnail]' => array( 'show' )
@@ -65,11 +65,11 @@ class Amazed_Blog_Posts_Widget extends SiteOrigin_Widget {
             ),
             'content_type' => array(
               'type' => 'select',
-              'label' => __( 'Content Type', 'ra-post-carousel-widget' ),
+              'label' => __( 'Content Type', 'amazed-blog-so-widgets' ),
               'default' => 'excerpt',
               'options' => array(
-                'excerpt' => __( 'Excerpt', 'ra-post-carousel-widget' ),
-                'content' => __( 'Full Content', 'ra-post-carousel-widget' )
+                'excerpt' => __( 'Excerpt', 'amazed-blog-so-widgets' ),
+                'content' => __( 'Full Content', 'amazed-blog-so-widgets' )
               ),
               'state_handler' => array(
                 'display[content]' => array( 'show' )
@@ -79,9 +79,9 @@ class Amazed_Blog_Posts_Widget extends SiteOrigin_Widget {
         ),
         'template' => array(
           'type' => 'select',
-          'label' => __( 'Choose template', 'ra-post-carousel-widget' ),
+          'label' => __( 'Choose template', 'amazed-blog-so-widgets' ),
           'options' => array(
-            'default' => __( 'Default', 'ra-post-carousel-widget' )
+            'default' => __( 'Default', 'amazed-blog-so-widgets' )
           ),
           'default' => 'default'
         )
@@ -93,6 +93,18 @@ class Amazed_Blog_Posts_Widget extends SiteOrigin_Widget {
         case 'default':
         default:
           return 'default';
+          break;
+
+        case 'column-layout':
+          return 'column-layout';
+          break;
+
+        case 'grid-layout':
+          return 'grid-layout';
+          break;
+        
+        case 'full-width-layout':
+          return 'full-width-layout';
           break;
       }
     }
