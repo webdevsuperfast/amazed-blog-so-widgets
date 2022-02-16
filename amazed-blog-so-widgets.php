@@ -31,6 +31,7 @@ class ABSW_Widgets {
 
 	public function absw_filter_active_widgets( $active ) {
 		$active[] = 'amazed-blog-posts';
+		$active[] = 'amazed-blog-categories';
 
 		return $active;
 	}
