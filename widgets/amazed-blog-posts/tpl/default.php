@@ -20,12 +20,19 @@ $attributes = array(
 
 <?php $post_args = siteorigin_widget_post_selector_process_query( $post );
 
+// var_dump($post_args['tax_query'][0]['terms']);
+
 $loop = new WP_Query( $post_args ); ?>
 
 <?php if ( $loop->have_posts() ) : ?>
   <div <?php foreach( $attributes as $name => $value ) echo $name . '="' . $value . '" ' ?>>
+  <?php
+    $term = get_term_by( 'slug', $post_args['tax_query'][0]['terms'], 'category' );
+    // echo $term->name;
+  ?>
   <?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
-    <div class="post-carousel-wrapper">
+    <?php $do_not_duplicate[] = $post->ID; // Add to variable current posts on loop ?>
+    <div class="post-wrapper">
       <?php if ( in_array( 'thumbnail', $display ) ) : ?>
         <div class="post-carousel-image">
           <a href="<?php echo get_permalink(); ?>">
@@ -43,19 +50,27 @@ $loop = new WP_Query( $post_args ); ?>
       <?php endif; ?>
       <?php if ( in_array( 'title', $display ) || in_array( 'content', $display ) ) : ?>
         <div class="content-wrap">
-          <?php echo ( in_array( 'title', $display ) ? '<h4>' . apply_filters( 'ra_post_carousel_title', get_the_title(), $postid ) . '</h4>' : '' ); ?>
+          <div class="post-metadata">
+            <?php the_category(', '); ?>
+          </div>
 
-          <?php var_dump( $content_type ); ?>
+          <?php echo ( in_array( 'title', $display ) ? '<h4>' . '<a href="'. get_permalink() .'">'.get_the_title() . '</a>' . '</h4>' : '' ); ?>
           
           <?php if ( in_array( 'content', $display ) && $content_type == 'content' ) : ?>
-            <div class="post-carousel-content">
+            <div class="post-entry">
               <?php the_content(); ?>
             </div>
-          <?php else : ?>
-            <div class="post-carousel-excerpt">
+          <?php elseif ( in_array( 'content', $display ) && $content_type == 'excerpt' ) : ?>
+            <div class="post-entry">
               <?php the_excerpt(); ?>
             </div>
+          <?php else: ?>
+            
           <?php endif; ?>
+          <div class="post-info">
+            <span class="post-author"><?php the_author_posts_link(); ?></span>
+            <span class="post-time"><?php the_time( 'F jS, Y' ); ?></span>
+          </div>
         </div>
       <?php endif; ?>
     </div>
