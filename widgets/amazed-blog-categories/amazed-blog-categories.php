@@ -34,16 +34,16 @@ class Amazed_Blog_Categories_Widget extends SiteOrigin_Widget {
         ),
         'structure' => array(
           'type' => 'section',
-          'label' => __( 'Category Settings', 'ra-post-carousel-widget' ),
+          'label' => __( 'Category Settings', 'amazed-blog-so-widgets' ),
           'hide' => true,
           'fields' => array(
             'display' => array(
               'type' => 'checkboxes',
-              'label' => __( 'Display Settings', 'ra-post-carousel-widget' ),
+              'label' => __( 'Display Settings', 'amazed-blog-so-widgets' ),
               'options' => array(
-                'thumbnail' => __( 'Category Thumbnail', 'ra-post-carousel-widget' ),
-                'title' => __( 'Category Title', 'ra-post-carousel-widget' ),
-                'content' => __( 'Category Content', 'ra-post-carousel-widget' )
+                'thumbnail' => __( 'Category Thumbnail', 'amazed-blog-so-widgets' ),
+                'title' => __( 'Category Title', 'amazed-blog-so-widgets' ),
+                'content' => __( 'Category Content', 'amazed-blog-so-widgets' )
               ),
               'default' => 'thumbnail',
               'state_emitter' => array(
@@ -53,7 +53,7 @@ class Amazed_Blog_Categories_Widget extends SiteOrigin_Widget {
             ),
             'size' => array(
               'type' => 'image-size',
-              'label' => __( 'Thumbnail Size', 'ra-post-carousel-widget' ),
+              'label' => __( 'Thumbnail Size', 'amazed-blog-so-widgets' ),
               'custom_size' => true,
               'state_handler' => array(
                 'display[thumbnail]' => array( 'show' )
@@ -63,9 +63,9 @@ class Amazed_Blog_Categories_Widget extends SiteOrigin_Widget {
         ),
         'template' => array(
           'type' => 'select',
-          'label' => __( 'Choose template', 'ra-post-carousel-widget' ),
+          'label' => __( 'Choose template', 'amazed-blog-so-widgets' ),
           'options' => array(
-            'default' => __( 'Default', 'ra-post-carousel-widget' )
+            'default' => __( 'Default', 'amazed-blog-so-widgets' )
           ),
           'default' => 'default'
         )
