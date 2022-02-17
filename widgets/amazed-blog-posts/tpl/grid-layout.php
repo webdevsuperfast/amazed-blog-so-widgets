@@ -28,8 +28,8 @@ $post_args['posts_per_page'] = 1;
 
 $loop = new WP_Query( $post_args ); ?>
 
-<?php if ( $loop->have_posts() ) : ?>
-  <div <?php foreach( $attributes as $name => $value ) echo $name . '="' . $value . '" ' ?>>
+<div <?php foreach( $attributes as $name => $value ) echo $name . '="' . $value . '" ' ?>>
+  <?php if ( $loop->have_posts() ) : ?>
   <?php
     $term = get_term_by( 'slug', $post_args['tax_query'][0]['terms'], 'category' );
     // echo $term->name;
@@ -130,6 +130,5 @@ $loop = new WP_Query( $post_args ); ?>
     <?php wp_reset_postdata(); ?>
   <?php else : ?>
     <?php echo __( 'No posts found.', 'ra-post-carousel-widget' ); ?>
-
-  </div>
   <?php endif; ?>
+</div>

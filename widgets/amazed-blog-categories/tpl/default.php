@@ -23,41 +23,41 @@ $attributes = array(
   'hide_empty' => true
 ) ); ?>
 
-<?php if ( $categories ) : ?>
-  <div <?php foreach( $attributes as $name => $value ) echo $name . '="' . $value . '" ' ?>>
-    <?php foreach( $categories as $category ) : ?>
-        <div class="category">
-          <?php if ( in_array( 'thumbnail', $display ) && function_exists( 'z_taxonomy_image_url' ) ) : ?>
-          <div class="category-image">
-            <?php 
-            if ( $size == 'custom_size' && ! empty( $instance['structure']['size_width'] ) && ! empty( $instance['structure']['size_height'] ) ) {
-              $size = array(
-                (int) $instance['structure']['size_width'],
-                (int) $instance['structure']['size_height']
-              );
-            }
-            
-            if ( get_option( 'z_taxonomy_image' . $category->term_id ) ) :
-              echo '<img src=" '. z_taxonomy_image_url( $category->term_id, $size ) .'" alt="'. $category->name .'">';
-            endif; 
-            ?>
-          </div>
-          <?php endif; ?>
-
-          <?php if ( in_array( 'title', $display ) ) : ?>
-          <div class="category-title">
-            <a href="<?php echo get_term_link( $category->term_id ); ?>">
-              <?php echo $category->name; ?>
-            </a>
-          </div>
-          <?php endif; ?>
-
-          <?php if ( in_array( 'content', $display ) ) : ?>
-            <div class="category-info">
-              <p class="category-count"><?php echo $category->count; ?></p>
+<div <?php foreach( $attributes as $name => $value ) echo $name . '="' . $value . '" ' ?>>
+  <?php if ( $categories ) : ?>
+      <?php foreach( $categories as $category ) : ?>
+          <div class="category">
+            <?php if ( in_array( 'thumbnail', $display ) && function_exists( 'z_taxonomy_image_url' ) ) : ?>
+            <div class="category-image">
+              <?php 
+              if ( $size == 'custom_size' && ! empty( $instance['structure']['size_width'] ) && ! empty( $instance['structure']['size_height'] ) ) {
+                $size = array(
+                  (int) $instance['structure']['size_width'],
+                  (int) $instance['structure']['size_height']
+                );
+              }
+              
+              if ( get_option( 'z_taxonomy_image' . $category->term_id ) ) :
+                echo '<img src=" '. z_taxonomy_image_url( $category->term_id, $size ) .'" alt="'. $category->name .'">';
+              endif; 
+              ?>
             </div>
-          <?php endif; ?>
-        </div>
-    <?php endforeach; ?>
-  </div>
-<?php endif; ?>
+            <?php endif; ?>
+
+            <?php if ( in_array( 'title', $display ) ) : ?>
+            <div class="category-title">
+              <a href="<?php echo get_term_link( $category->term_id ); ?>">
+                <?php echo $category->name; ?>
+              </a>
+            </div>
+            <?php endif; ?>
+
+            <?php if ( in_array( 'content', $display ) ) : ?>
+              <div class="category-info">
+                <p class="category-count"><?php echo $category->count; ?></p>
+              </div>
+            <?php endif; ?>
+          </div>
+      <?php endforeach; ?>
+  <?php endif; ?>
+</div>
