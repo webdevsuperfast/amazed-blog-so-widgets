@@ -38,13 +38,7 @@ $loop = new WP_Query( $post_args ); ?>
         <div class="post-carousel-image">
           <a href="<?php echo get_permalink(); ?>">
           <?php
-          if ( $size == 'custom_size' && ! empty( $instance['structure']['size_width'] ) && ! empty( $instance['structure']['size_height'] ) ) {
-            $size = array(
-              (int) $instance['structure']['size_width'],
-              (int) $instance['structure']['size_height']
-            );
-          }
-          the_post_thumbnail( $size );
+          the_post_thumbnail( 'full' );
           ?>
           </a>
         </div>
