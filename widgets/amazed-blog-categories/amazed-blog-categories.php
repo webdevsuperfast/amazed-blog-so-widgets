@@ -88,6 +88,7 @@ class Amazed_Blog_Categories_Widget extends SiteOrigin_Widget {
 			'structure' => $instance['structure'],
 			'size' => $instance['structure']['size'],
 			'template' => $instance['template'],
+      'display' => $instance['structure']['display'],
     	);
     }
 }
