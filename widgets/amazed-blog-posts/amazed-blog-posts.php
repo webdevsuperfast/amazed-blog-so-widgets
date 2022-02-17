@@ -86,7 +86,7 @@ class Amazed_Blog_Posts_Widget extends SiteOrigin_Widget {
             'default' => __( 'Default', 'amazed-blog-so-widgets' ),
             'column-layout' => __( 'Column', 'amazed-blog-so-widgets' ),
             'grid-layout' => __( 'Grid', 'amazed-blog-so-widgets' ),
-            'full-width-layout' => __( 'Masonry', 'amazed-blog-so-widgets' ),
+            'full-width-layout' => __( 'Full Width', 'amazed-blog-so-widgets' ),
           ),
           'default' => 'default'
         )
