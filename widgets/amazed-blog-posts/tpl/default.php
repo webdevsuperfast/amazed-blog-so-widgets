@@ -10,6 +10,7 @@ $attributes = array();
 
 $classes = array();
 $classes[] = 'amazed-blog-posts';
+$classes[] = 'amazed-blog-posts-column';
 $classes[] = $class;
 
 $attributes = array(
@@ -31,7 +32,6 @@ $loop = new WP_Query( $post_args ); ?>
     // echo $term->name;
   ?>
   <?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
-    <?php $do_not_duplicate[] = $post->ID; // Add to variable current posts on loop ?>
     <div class="post-wrapper">
       <?php if ( in_array( 'thumbnail', $display ) ) : ?>
         <div class="post-carousel-image">
@@ -48,12 +48,14 @@ $loop = new WP_Query( $post_args ); ?>
           </a>
         </div>
       <?php endif; ?>
-      <?php if ( in_array( 'title', $display ) || in_array( 'content', $display ) ) : ?>
-        <div class="content-wrap">
-          <div class="post-metadata">
-            <?php the_category(', '); ?>
-          </div>
 
+      <?php if ( in_array( 'title', $display ) || in_array( 'content', $display ) || in_array( 'info', $display ) || in_array( 'meta', $display ) ) : ?>
+        <div class="content-wrap">
+          <?php if ( in_array( 'meta', $display) ) : ?>
+            <div class="post-metadata">
+              <?php the_category(', '); ?>
+            </div>
+          <?php endif; ?>
           <?php echo ( in_array( 'title', $display ) ? '<h4>' . '<a href="'. get_permalink() .'">'.get_the_title() . '</a>' . '</h4>' : '' ); ?>
           
           <?php if ( in_array( 'content', $display ) && $content_type == 'content' ) : ?>
@@ -67,10 +69,12 @@ $loop = new WP_Query( $post_args ); ?>
           <?php else: ?>
             
           <?php endif; ?>
-          <div class="post-info">
-            <span class="post-author"><?php the_author_posts_link(); ?></span>
-            <span class="post-time"><?php the_time( 'F jS, Y' ); ?></span>
-          </div>
+          <?php if ( in_array( 'info', $display ) ) : ?>
+            <div class="post-info">
+              <span class="post-author"><?php the_author_posts_link(); ?></span>
+              <span class="post-time"><?php the_time( 'F jS, Y' ); ?></span>
+            </div>
+          <?php endif; ?>
         </div>
       <?php endif; ?>
     </div>
