@@ -26,9 +26,8 @@ $attributes = array(
 <?php if ( $categories ) : ?>
   <div <?php foreach( $attributes as $name => $value ) echo $name . '="' . $value . '" ' ?>>
     <?php foreach( $categories as $category ) : ?>
-      <?php if ( function_exists( 'z_taxonomy_image_url' ) ) : ?>
         <div class="category">
-          <?php if ( in_array( 'thumbnail', $display ) ) : ?>
+          <?php if ( in_array( 'thumbnail', $display ) && function_exists( 'z_taxonomy_image_url' ) ) : ?>
           <div class="category-image">
             <?php 
             if ( $size == 'custom_size' && ! empty( $instance['structure']['size_width'] ) && ! empty( $instance['structure']['size_height'] ) ) {
@@ -59,7 +58,6 @@ $attributes = array(
             </div>
           <?php endif; ?>
         </div>
-      <?php endif; ?>
     <?php endforeach; ?>
   </div>
 <?php endif; ?>
