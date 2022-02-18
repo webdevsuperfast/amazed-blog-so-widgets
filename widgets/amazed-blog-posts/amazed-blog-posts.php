@@ -83,24 +83,19 @@ class Amazed_Blog_Posts_Widget extends SiteOrigin_Widget {
           'type' => 'select',
           'label' => __( 'Choose template', 'amazed-blog-so-widgets' ),
           'options' => array(
-            'default' => __( 'Default', 'amazed-blog-so-widgets' ),
             'column-layout' => __( 'Column', 'amazed-blog-so-widgets' ),
             'grid-layout' => __( 'Grid', 'amazed-blog-so-widgets' ),
             'full-width-layout' => __( 'Full Width', 'amazed-blog-so-widgets' ),
           ),
-          'default' => 'default'
+          'default' => 'column-layout'
         )
 			);
     }
 
     function get_template_name( $instance ) {
       switch ( $instance['template'] ) {
-        case 'default':
-        default:
-          return 'default';
-          break;
-
         case 'column-layout':
+        default:
           return 'column-layout';
           break;
 
