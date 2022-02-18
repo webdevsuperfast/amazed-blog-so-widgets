@@ -1,7 +1,8 @@
 <?php
 /*
 Plugin Name: Amazed Blog SiteOrigin Widgets
-Plugin URI: https://amazed.blog
+Plugin URI: https://amazed.blog/amazed-blog-so-widgets
+GitLab Plugin URI: https://gitlab.com/webdevsuperfast/amazed-blog-so-widgets
 Description: Amazed Blog SiteOrigin Widgets is a WordPress widgets collection curated for Amazed Blog.
 Version: 	1.0
 Author: 	Amazed Blog
@@ -16,6 +17,9 @@ defined( 'ABSPATH' ) or die( esc_html_e( 'With great power comes great responsib
 
 class ABSW_Widgets {
 	public function __construct() {
+		// Require the plugin updater
+		require_once plugin_dir_path( __FILE__ ) . 'includes/updater.php';
+
 		// Add widgets folder to SiteOrigin Widgets
 		add_filter( 'siteorigin_widgets_widget_folders', array( $this, 'absw_widget_folders' ) );
 
