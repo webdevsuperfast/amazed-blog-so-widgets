@@ -129,6 +129,6 @@ $loop = new WP_Query( $post_args ); ?>
   <?php endwhile; endif; ?>
     <?php wp_reset_postdata(); ?>
   <?php else : ?>
-    <?php echo __( 'No posts found.', 'ra-post-carousel-widget' ); ?>
+    <?php echo __( 'No posts found.', 'amazed-blog-so-widgets' ); ?>
   <?php endif; ?>
 </div>
