@@ -2,7 +2,7 @@
 
 // Include the file with PluginUpdater class.
 if ( ! class_exists( 'Moenus\GitLabUpdater\PluginUpdater' ) ) :
-  require_once plugin_dir_path(__FILE__ ) . 'includes/updater/plugin-updater.php';
+  require_once plugin_dir_path(__FILE__ ) . 'updater/plugin-updater.php';
 endif;
 
 use Moenus\GitLabUpdater\PluginUpdater as Updater;
