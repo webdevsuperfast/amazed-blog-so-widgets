@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "css": "tailwindcss --output assets/css/style.css --postcss --minify --watch",
-    "watch": "browser-sync start --proxy \"https://wordpress.ddev.site\" --host \"https://wordpress.ddev.site\" --no-inject-changes --files= \"./\"",
+    "watch": "browser-sync start --proxy \"https://boilerplate.ddev.site\" --host \"https://boilerplate.ddev.site\" --no-inject-changes --files= \"./widgets/**/*\"",
     "build": "concurrently --kill-others-on-fail \"npm run css\" \"npm run watch\""
   },
   "repository": {
