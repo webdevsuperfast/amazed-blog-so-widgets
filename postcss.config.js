@@ -4,8 +4,5 @@ module.exports = {
       config: "./tailwind.config.js",
     },
     autoprefixer: {},
-    postcssNested: {},
-    postcssNestedAncestors: {},
-    postcssImport: {},
   },
 };
