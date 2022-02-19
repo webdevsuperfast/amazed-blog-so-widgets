@@ -1,7 +1,7 @@
 module.exports = {
   content: [
-    "./widgets/amazed-blog-categories/**/*.{php,html}",
-    "./widgets/amazed-blog-posts/**/*.{php,html}",
+    "./widgets/amazed-blog-categories/tpl/*.php",
+    "./widgets/amazed-blog-posts/tpl/*.php",
   ],
   prefix: "absw-",
   corePlugins: {
