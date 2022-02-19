@@ -11,6 +11,7 @@ $attributes = array();
 $classes = array();
 $classes[] = 'amazed-blog-posts';
 $classes[] = 'amazed-blog-posts-column';
+$classes[] = 'absw-grid';
 $classes[] = $class;
 
 $attributes = array(
