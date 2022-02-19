@@ -32,6 +32,10 @@ class Amazed_Blog_Categories_Widget extends SiteOrigin_Widget {
 					'type' => 'text',
 					'label' => __( 'Class', 'amazed-blog-so-widgets' )
         ),
+        'catsnum' => array(
+          'type' => 'number',
+          'label' => __( 'Number of categories to show', 'amazed-blog-so-widgets' ),
+        ),
         'structure' => array(
           'type' => 'section',
           'label' => __( 'Category Settings', 'amazed-blog-so-widgets' ),
@@ -85,6 +89,7 @@ class Amazed_Blog_Categories_Widget extends SiteOrigin_Widget {
     	return array(
 			'title' => $instance['title'],
 			'class' => $instance['class'],
+      'catsnum' => $instance['catsnum'],
 			'structure' => $instance['structure'],
 			'size' => $instance['structure']['size'],
 			'template' => $instance['template'],

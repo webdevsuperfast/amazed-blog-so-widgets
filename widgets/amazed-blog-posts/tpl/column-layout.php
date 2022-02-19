@@ -36,8 +36,8 @@ $loop = new WP_Query( $post_args ); ?>
     <?php $do_not_duplicate[] = $post->ID; // Add to variable current posts on loop ?>
     <div class="post-wrapper absw-rounded absw-overflow-hidden absw-shadow absw-bg-gray-100">
       <?php if ( in_array( 'thumbnail', $display ) ) : ?>
-        <div class="post-carousel-image">
-          <a href="<?php echo get_permalink(); ?>">
+        <div class="post-carousel-image absw-relative absw-leading-none">
+          <a class="absw-block absw-leading-none" href="<?php echo get_permalink(); ?>">
           <?php
           if ( $size == 'custom_size' && ! empty( $instance['structure']['size_width'] ) && ! empty( $instance['structure']['size_height'] ) ) {
             $size = array(
@@ -45,7 +45,7 @@ $loop = new WP_Query( $post_args ); ?>
               (int) $instance['structure']['size_height']
             );
           }
-          the_post_thumbnail( $size, array( '' ) );
+          the_post_thumbnail( $size, array( 'absw-block absw-w-full absw-h-48 absw-object-cover' ) );
           ?>
           </a>
         </div>
