@@ -11,7 +11,7 @@ $attributes = array();
 $classes = array();
 $classes[] = 'amazed-blog-posts';
 $classes[] = 'amazed-blog-posts-column';
-$classes[] = 'absw-grid';
+$classes[] = 'absw-grid absw-grid-cols-none sm:absw-grid-cols-2 md:absw-grid-cols-4'; // Tailwind utility classes
 $classes[] = $class;
 
 $attributes = array(
