@@ -1,0 +1,39 @@
+{
+  "name": "amazed-blog-so-widgets",
+  "version": "1.0.2",
+  "description": "Amazed Blog SiteOrigin Widgets is a WordPress widgets collection curated for Amazed Blog.",
+  "main": "index.js",
+  "scripts": {
+    "css": "tailwindcss --output assets/css/style.css --postcss --minify --watch",
+    "watch": "browser-sync start --proxy \"https://wordpress.ddev.site\" --host \"https://wordpress.ddev.site\" --no-inject-changes --files= \"./\"",
+    "build": "concurrently --kill-others-on-fail \"npm run css\" \"npm run watch\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/webdevsuperfast/amazed-blog-so-widgets.git"
+  },
+  "keywords": [
+    "siteorigin",
+    "widgets",
+    "so-widgets",
+    "tailwindcss"
+  ],
+  "author": "Amazed Blog",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://gitlab.com/webdevsuperfast/amazed-blog-so-widgets/issues"
+  },
+  "homepage": "https://gitlab.com/webdevsuperfast/amazed-blog-so-widgets#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.4.2",
+    "browser-sync": "^2.27.7",
+    "concurrently": "^7.0.0",
+    "cross-env": "^7.0.3",
+    "postcss": "^8.4.6",
+    "postcss-import": "^14.0.2",
+    "postcss-nested": "^5.0.6",
+    "postcss-nested-ancestors": "^2.0.0",
+    "resolve-url-loader": "^5.0.0",
+    "tailwindcss": "^3.0.23"
+  }
+}
