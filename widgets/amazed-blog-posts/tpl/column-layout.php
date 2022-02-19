@@ -11,7 +11,7 @@ $attributes = array();
 $classes = array();
 $classes[] = 'amazed-blog-posts';
 $classes[] = 'amazed-blog-posts-column';
-$classes[] = 'absw-grid absw-grid-cols-none sm:absw-grid-cols-2 md:absw-grid-cols-4'; // Tailwind utility classes
+$classes[] = 'absw-grid absw-grid-cols-none sm:absw-grid-cols-2 md:absw-grid-cols-4 absw-gap-8 absw-underline-none'; // Tailwind utility classes
 $classes[] = $class;
 
 $attributes = array(
@@ -34,7 +34,7 @@ $loop = new WP_Query( $post_args ); ?>
   ?>
   <?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
     <?php $do_not_duplicate[] = $post->ID; // Add to variable current posts on loop ?>
-    <div class="post-wrapper">
+    <div class="post-wrapper absw-rounded absw-overflow-hidden absw-shadow absw-bg-gray-100">
       <?php if ( in_array( 'thumbnail', $display ) ) : ?>
         <div class="post-carousel-image">
           <a href="<?php echo get_permalink(); ?>">
@@ -45,14 +45,14 @@ $loop = new WP_Query( $post_args ); ?>
               (int) $instance['structure']['size_height']
             );
           }
-          the_post_thumbnail( $size );
+          the_post_thumbnail( $size, array( '' ) );
           ?>
           </a>
         </div>
       <?php endif; ?>
       
       <?php if ( in_array( 'title', $display ) || in_array( 'content', $display ) || in_array( 'info', $display ) || in_array( 'meta', $display ) ) : ?>
-        <div class="content-wrap">
+        <div class="content-wrap absw-p-5">
           <?php if ( in_array( 'meta', $display) ) : ?>
             <div class="post-metadata">
               <?php the_category(', '); ?>
