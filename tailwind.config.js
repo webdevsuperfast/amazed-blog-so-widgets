@@ -1,12 +1,13 @@
 module.exports = {
   content: [
-    "./widgets/amazed-blog-categories/*.{php,html}",
-    "./widgets/amazed-blog-posts/*.{php,html}",
+    "./widgets/amazed-blog-categories/**/*.{php,html}",
+    "./widgets/amazed-blog-posts/**/*.{php,html}",
   ],
-  corePlugins: {
-    preFlight: false,
-  },
   prefix: "absw-",
+  corePlugins: {
+    preflight: false,
+  },
+  important: false,
   theme: {
     extend: {},
   },
