@@ -21,16 +21,10 @@ $attributes = array(
 
 <?php $post_args = siteorigin_widget_post_selector_process_query( $post );
 
-// var_dump($post_args['tax_query'][0]['terms']);
-
 $loop = new WP_Query( $post_args ); ?>
 
 <div <?php foreach( $attributes as $name => $value ) echo $name . '="' . $value . '" ' ?>>
 <?php if ( $loop->have_posts() ) : ?>
-  <?php
-    $term = get_term_by( 'slug', $post_args['tax_query'][0]['terms'], 'category' );
-    // echo $term->name;
-  ?>
   <?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
     <?php $do_not_duplicate[] = $post->ID; // Add to variable current posts on loop ?>
     <div class="post-wrapper">

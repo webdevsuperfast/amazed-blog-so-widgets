@@ -25,16 +25,10 @@ $original_posts = $post_args['posts_per_page'];
 
 $post_args['posts_per_page'] = 1;
 
-// var_dump($post_args['posts_per_page']);
-
 $loop = new WP_Query( $post_args ); ?>
 
 <div <?php foreach( $attributes as $name => $value ) echo $name . '="' . $value . '" ' ?>>
   <?php if ( $loop->have_posts() ) : ?>
-  <?php
-    $term = get_term_by( 'slug', $post_args['tax_query'][0]['terms'], 'category' );
-    // echo $term->name;
-  ?>
   <?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
     <?php $do_not_duplicate = get_the_ID(); // Add to variable current posts on loop ?>
     <div class="absw-col-span-2 <?php post_class( 'post-wrapper post-featured' ); ?>">
