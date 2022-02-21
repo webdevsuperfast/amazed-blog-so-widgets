@@ -23,7 +23,8 @@ $attributes = array(
 $catargs = array(
   'taxonomy' => 'category',
   'orderby' => 'count',
-  'hide_empty' => true
+  'hide_empty' => true,
+  'order' => 'DESC',
 ); 
 
 $catargs['number'] = $catsnum ? (int) $catsnum : 0;
