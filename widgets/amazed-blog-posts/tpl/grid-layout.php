@@ -42,7 +42,7 @@ $loop = new WP_Query( $post_args ); ?>
         <div class="post-carousel-image">
           <a href="<?php echo get_permalink(); ?>">
           <?php
-          the_post_thumbnail( 'full' );
+          the_post_thumbnail( 'full', [ 'class' => 'absw-block absw-w-full absw-h-full absw-object-cover' ] );
           ?>
           </a>
         </div>
@@ -85,7 +85,7 @@ $loop = new WP_Query( $post_args ); ?>
     <div class="absw-grid absw-grid-cols-none sm:absw-grid-cols-3 absw-gap-8 <?php post_class( 'post-wrapper post-grid' ); ?>">
         <?php if ( in_array( 'thumbnail', $display ) ) : ?>
           <div class="post-carousel-image absw-col-span-1 relative">
-            <a href="<?php echo get_permalink(); ?>">
+            <a class="absw-block absw-leading-none" href="<?php echo get_permalink(); ?>">
             <?php
             if ( $size == 'custom_size' && ! empty( $instance['structure']['size_width'] ) && ! empty( $instance['structure']['size_height'] ) ) {
               $size = array(
@@ -93,7 +93,7 @@ $loop = new WP_Query( $post_args ); ?>
                 (int) $instance['structure']['size_height']
               );
             }
-            the_post_thumbnail( $size, array( 'absw-absolute absw-w-full absw-h-20 absw-object-cover' ) );
+            the_post_thumbnail( $size, ['class' => 'absw-w-full absw-h-20 absw-object-cover' ] );
             ?>
             </a>
           </div>

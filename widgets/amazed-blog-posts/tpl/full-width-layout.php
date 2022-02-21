@@ -38,7 +38,7 @@ $loop = new WP_Query( $post_args ); ?>
         <div class="post-carousel-image">
           <a href="<?php echo get_permalink(); ?>">
           <?php
-          the_post_thumbnail( 'full' );
+          the_post_thumbnail( 'full', [ 'class' => 'absw-block absw-w-full absw-h-full absw-object-cover' ] );
           ?>
           </a>
         </div>

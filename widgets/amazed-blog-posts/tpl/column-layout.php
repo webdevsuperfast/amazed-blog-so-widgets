@@ -45,7 +45,7 @@ $loop = new WP_Query( $post_args ); ?>
               (int) $instance['structure']['size_height']
             );
           }
-          the_post_thumbnail( $size, array( 'absw-block absw-w-full absw-h-48 absw-object-cover' ) );
+          the_post_thumbnail( $size, ['class' => 'absw-block absw-w-full absw-h-48 absw-object-cover'] );
           ?>
           </a>
         </div>
