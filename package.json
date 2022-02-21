@@ -1,6 +1,6 @@
 {
   "name": "amazed-blog-so-widgets",
-  "version": "1.0.2",
+  "version": "1.0.5",
   "description": "Amazed Blog SiteOrigin Widgets is a WordPress widgets collection curated for Amazed Blog.",
   "main": "index.js",
   "scripts": {
