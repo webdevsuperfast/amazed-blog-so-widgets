@@ -1,4 +1,4 @@
-## Amazed Blog SiteOrigin Widgets
+# Amazed Blog SiteOrigin Widgets
 
 Amazed Blog SiteOrigin Widgets is a WordPress widgets collection curated for Amazed Blog.
 
