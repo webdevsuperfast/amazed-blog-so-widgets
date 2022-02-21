@@ -19,6 +19,12 @@ This will compile CSS through PostCSS using TailwindCSS. It watches changes and 
 
 The plugin uses [WP GitLab Updater](https://github.com/krafit/wp-gitlab-updater) to handle automatic update checks. The script pulls the most recent tag from the repository.
 
+1. Edit plugin version e.g. `Version: 1.0.4` in the plugin header under `amazed-blog-so-widgets.php` & commit with a message e.g. `Version bump`
+2. List commits & check the commit hash for Step #1 by running `git log --pretty=oneline`. Get/copy the first 7 character from the string e.g. `f52a237`.
+3. Run `git tag -a f52a237 -m "Version updated to 1.0.4"`.
+4. Run `git push -u origin master`.
+5. Run `git push origin --tags`.
+
 ## Notes
 
-- To be able to use or display category images install [Categories Images](https://wordpress.org/plugins/categories-images/).
+To be able to use or display category images install [Categories Images](https://wordpress.org/plugins/categories-images/).
