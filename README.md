@@ -27,4 +27,5 @@ The plugin uses [WP GitLab Updater](https://github.com/krafit/wp-gitlab-updater)
 
 ## Notes
 
-To be able to use or display category images install [Categories Images](https://wordpress.org/plugins/categories-images/).
+1. To be able to use or display category images install [Categories Images](https://wordpress.org/plugins/categories-images/).
+2. To be able to update to the latest version, please ensure that the plugin folder name is `amazed-blog-so-widgets` not `amazed-blog-so-widgets-master` or `amazed-blog-so-widgets-1.0.4`. The updater seems to have an issue when the folder structure doesn't match the ones indicated in `includes/updater.php` file.
