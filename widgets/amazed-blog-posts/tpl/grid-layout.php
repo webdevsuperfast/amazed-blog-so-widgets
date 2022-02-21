@@ -130,7 +130,7 @@ $loop = new WP_Query( $post_args ); ?>
       </div>
     <?php endwhile; endif; ?>
   </div>
-    <?php wp_reset_postdata(); ?>
+    <?php wp_reset_query(); ?>
   <?php else : ?>
     <?php echo __( 'No posts found.', 'amazed-blog-so-widgets' ); ?>
   <?php endif; ?>
