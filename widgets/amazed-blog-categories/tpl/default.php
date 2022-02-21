@@ -10,6 +10,7 @@ $attributes = array();
 
 $classes = array();
 $classes[] = 'amazed-blog-categories';
+$classes[] = 'row';
 $classes[] = 'absw-grid absw-grid-cols-none sm:absw-grid-cols-2 md:absw-grid-cols-4 absw-gap-8 absw-underline-none';
 $classes[] = $class;
 
@@ -33,7 +34,7 @@ $catargs['number'] = $catsnum ? (int) $catsnum : 0;
 <div <?php foreach( $attributes as $name => $value ) echo $name . '="' . $value . '" ' ?>>
   <?php if ( $categories ) : ?>
       <?php foreach( $categories as $category ) : ?>
-          <div class="category">
+          <div class="category col-md-3 ">
             <?php if ( in_array( 'thumbnail', $display ) && function_exists( 'z_taxonomy_image_url' ) ) : ?>
             <div class="category-image absw-overflow-hidden absw-shadow absw-rounded absw-mb-5 absw-leading-none">
               <?php 
@@ -69,4 +70,4 @@ $catargs['number'] = $catsnum ? (int) $catsnum : 0;
           </div>
       <?php endforeach; ?>
   <?php endif; ?>
-</div>
+</div>  
