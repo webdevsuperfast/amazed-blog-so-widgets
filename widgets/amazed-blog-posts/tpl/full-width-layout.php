@@ -67,6 +67,7 @@ $loop = new WP_Query( $post_args ); ?>
           <?php if ( in_array( 'info', $display ) ) : ?>
             <div class="post-info">
               <span class="post-author"><?php the_author_posts_link(); ?></span>
+              <span>•</span>
               <span class="post-time"><?php the_time( 'F jS, Y' ); ?></span>
             </div>
           <?php endif; ?>
