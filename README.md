@@ -9,9 +9,11 @@ Amazed Blog SiteOrigin Widgets is a WordPress widgets collection curated for Ama
 
 ## Building
 
+This will compile CSS through PostCSS using TailwindCSS. It watches changes and rebuilds the CSS file accordingly.
+
 1. Install [NodeJS](https://nodejs.org)
 2. Browse to plugin folder
-3. Run `npm run build`
+3. Run `npm install` & `npm run build`
 
 ## Updating
 
