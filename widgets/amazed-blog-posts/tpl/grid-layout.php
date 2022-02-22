@@ -11,7 +11,7 @@ $attributes = array();
 $classes = array();
 $classes[] = 'amazed-blog-posts';
 $classes[] = 'amazed-blog-posts-grid';
-$classes[] = 'absw-grid absw-grid-cols-none sm:absw-grid-cols-3 absw-gap-8';
+$classes[] = 'absw-grid absw-grid-cols-none sm:absw-grid-cols-3 md:absw-grid-cols-10 lg:absw-grid-cols-20 absw-gap-8';
 $classes[] = $class;
 
 $attributes = array(
@@ -31,7 +31,7 @@ $loop = new WP_Query( $post_args ); ?>
   <?php if ( $loop->have_posts() ) : ?>
   <?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
     <?php $do_not_duplicate = get_the_ID(); // Add to variable current posts on loop ?>
-    <div <?php post_class( 'post-wrapper post-featured absw-col-span-2' ); ?>>
+    <div <?php post_class( 'post-wrapper post-featured sm:absw-col-span-2 md:absw-col-span-6 lg:absw-col-span-11' ); ?>>
       <?php if ( in_array( 'thumbnail', $display ) ) : ?>
         <div class="post-carousel-image">
           <a href="<?php echo get_permalink(); ?>">
@@ -73,11 +73,11 @@ $loop = new WP_Query( $post_args ); ?>
       <?php endif; ?>
     </div>
   <?php endwhile; ?>
-  <div class="post-grid-wrapper absw-col-span-1">
+  <div class="post-grid-wrapper sm:absw-col-span-1 md:abswd-col-span-4 lg:absw-col-span-9">
     <?php query_posts('&posts_per_page=' . $original_posts . '&category_name=' . $post_args['tax_query'][0]['terms']); ?>
     <?php if ( have_posts() ) : while ( have_posts() ) : the_post() ?>
     <?php if ( get_the_ID() == $do_not_duplicate ) continue; ?>
-    <div <?php post_class( 'post-wrapper post-grid absw-grid absw-grid-cols-none sm:absw-grid-cols-3 absw-gap-8' ); ?>>
+    <div <?php post_class( 'post-wrapper post-grid absw-grid absw-grid-cols-3 absw-gap-4' ); ?>>
         <?php if ( in_array( 'thumbnail', $display ) ) : ?>
           <div class="post-carousel-image absw-col-span-1 relative">
             <a class="absw-block absw-leading-none" href="<?php echo get_permalink(); ?>">
