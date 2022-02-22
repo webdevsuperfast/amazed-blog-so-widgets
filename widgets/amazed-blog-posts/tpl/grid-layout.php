@@ -31,7 +31,7 @@ $loop = new WP_Query( $post_args ); ?>
   <?php if ( $loop->have_posts() ) : ?>
   <?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
     <?php $do_not_duplicate = get_the_ID(); // Add to variable current posts on loop ?>
-    <div class="absw-col-span-2 <?php post_class( 'post-wrapper post-featured' ); ?>">
+    <div <?php post_class( 'post-wrapper post-featured absw-col-span-2' ); ?>>
       <?php if ( in_array( 'thumbnail', $display ) ) : ?>
         <div class="post-carousel-image">
           <a href="<?php echo get_permalink(); ?>">
@@ -77,7 +77,7 @@ $loop = new WP_Query( $post_args ); ?>
   <div class="post-grid-wrapper absw-col-span-1">
     <?php if ( have_posts() ) : while ( have_posts() ) : the_post() ?>
     <?php if ( get_the_ID() == $do_not_duplicate ) continue; ?>
-    <div class="absw-grid absw-grid-cols-none sm:absw-grid-cols-3 absw-gap-8 <?php post_class( 'post-wrapper post-grid' ); ?>">
+    <div <?php post_class( 'post-wrapper post-grid absw-grid absw-grid-cols-none sm:absw-grid-cols-3 absw-gap-8' ); ?>>
         <?php if ( in_array( 'thumbnail', $display ) ) : ?>
           <div class="post-carousel-image absw-col-span-1 relative">
             <a class="absw-block absw-leading-none" href="<?php echo get_permalink(); ?>">
