@@ -9,11 +9,12 @@ Amazed Blog SiteOrigin Widgets is a WordPress widgets collection curated for Ama
 
 ## Building
 
-This will compile CSS through PostCSS using TailwindCSS. It watches changes and rebuilds the CSS file accordingly.
+This will compile CSS through [PostCSS](https://postcss.org/) using [TailwindCSS](https://tailwindcss.com/). It watches changes and rebuilds the CSS file accordingly.
 
-1. Install [NodeJS](https://nodejs.org)
-2. Browse to plugin folder
-3. Run `npm install` & `npm run build`
+1. Install [NodeJS](https://nodejs.org).
+2. Browse to plugin folder.
+3. Change the development site URL under `scripts > watch` in `package.json` to e.g. `https://boilerplate.ddev.site`.
+4. Run `npm install` & `npm run build`.
 
 ## Updating
 
