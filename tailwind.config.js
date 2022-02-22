@@ -9,7 +9,11 @@ module.exports = {
   },
   important: false,
   theme: {
-    extend: {},
+    extend: {
+      gridTemplateColumns: {
+        20: "repeat(20, minmax(0, 1fr))", // 55/45
+      },
+    },
   },
   plugins: [],
 };
