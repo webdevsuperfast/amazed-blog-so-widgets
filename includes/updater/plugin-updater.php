@@ -100,7 +100,8 @@ class PluginUpdater extends UpdaterBase {
 			//
 			// At first, we loop the GitLab updater plugins.
 			foreach ( $this->plugin_data as $plugin ) {
-				$plugin_basename = $plugin['settings-array-key'];
+				$plugin_basename = $plugin['settings-array-key'] ?? '';
+
 				// Check if we have a plugin with the same slug and another package URL
 				// than our GitLab URL.
 				if ( array_key_exists( $plugin_basename, $transient->response ) && false === strpos( $transient->response[ $plugin_basename ]->package, $plugin['gitlab-url'] ) ) {
@@ -146,9 +147,9 @@ class PluginUpdater extends UpdaterBase {
 
 		foreach ( $this->plugin_data as $plugin ) {
 			// Get data from array which we need to build package URL.
-			$gitlab_url   = $plugin['gitlab-url'];
-			$repo         = $plugin['repo'];
-			$access_token = $plugin['access-token'];
+			$gitlab_url   = $plugin['gitlab-url'] ?? '';
+			$repo         = $plugin['repo'] ?? '';
+			$access_token = $plugin['access-token'] ?? '';
 
 			// Get tag list from GitLab repo.
 			$request = $this->fetch_tags_from_repo( $gitlab_url, $repo, $access_token );
