@@ -73,8 +73,8 @@ $loop = new WP_Query( $post_args ); ?>
       <?php endif; ?>
     </div>
   <?php endwhile; ?>
-  <?php query_posts( array( 'post_not_in' => $do_not_duplicate, 'posts_per_page' => $original_posts ) ) ?>
   <div class="post-grid-wrapper absw-col-span-1">
+    <?php query_posts('&posts_per_page=' . $original_posts . '&category_name=' . $post_args['tax_query'][0]['terms']); ?>
     <?php if ( have_posts() ) : while ( have_posts() ) : the_post() ?>
     <?php if ( get_the_ID() == $do_not_duplicate ) continue; ?>
     <div <?php post_class( 'post-wrapper post-grid absw-grid absw-grid-cols-none sm:absw-grid-cols-3 absw-gap-8' ); ?>>
