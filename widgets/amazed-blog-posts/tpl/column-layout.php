@@ -29,9 +29,10 @@ $loop = new WP_Query( $post_args ); ?>
   <?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
     <?php $do_not_duplicate[] = $post->ID; // Add to variable current posts on loop ?>
     <div <?php post_class( "post-wrapper absw-rounded absw-overflow-hidden absw-shadow absw-bg-gray-100" ); ?>>
+	 <a class="absw-block absw-leading-none" href="<?php echo get_permalink(); ?>">
       <?php if ( in_array( 'thumbnail', $display ) ) : ?>
         <div class="post-carousel-image absw-relative absw-leading-none">
-          <a class="absw-block absw-leading-none" href="<?php echo get_permalink(); ?>">
+         
           <?php
           if ( $size == 'custom_size' && ! empty( $instance['structure']['size_width'] ) && ! empty( $instance['structure']['size_height'] ) ) {
             $size = array(
@@ -41,7 +42,7 @@ $loop = new WP_Query( $post_args ); ?>
           }
           the_post_thumbnail( $size, ['class' => 'absw-block absw-w-full absw-h-48 absw-object-cover'] );
           ?>
-          </a>
+         
         </div>
       <?php endif; ?>
       
@@ -74,6 +75,7 @@ $loop = new WP_Query( $post_args ); ?>
           <?php endif; ?>
         </div>
       <?php endif; ?>
+	   </a>
     </div>
   <?php endwhile; ?>
     <?php wp_reset_query(); ?>
