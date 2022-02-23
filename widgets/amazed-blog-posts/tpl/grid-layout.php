@@ -79,8 +79,9 @@ $loop = new WP_Query( $post_args ); ?>
     <?php if ( get_the_ID() == $do_not_duplicate ) continue; ?>
     <div <?php post_class( 'post-wrapper post-grid absw-grid absw-grid-cols-3 absw-gap-4' ); ?>>
         <?php if ( in_array( 'thumbnail', $display ) ) : ?>
+		<a class="absw-block absw-leading-none" href="<?php echo get_permalink(); ?>">
           <div class="post-carousel-image absw-col-span-1 relative">
-            <a class="absw-block absw-leading-none" href="<?php echo get_permalink(); ?>">
+            
             <?php
             if ( $size == 'custom_size' && ! empty( $instance['structure']['size_width'] ) && ! empty( $instance['structure']['size_height'] ) ) {
               $size = array(
@@ -90,7 +91,7 @@ $loop = new WP_Query( $post_args ); ?>
             }
             the_post_thumbnail( $size, ['class' => 'absw-w-full absw-h-20 absw-object-cover' ] );
             ?>
-            </a>
+            
           </div>
         <?php endif; ?>
         
@@ -123,6 +124,7 @@ $loop = new WP_Query( $post_args ); ?>
             <?php endif; ?>
           </div>
         <?php endif; ?>
+		</a>
       </div>
     <?php endwhile; endif; ?>
   </div>
