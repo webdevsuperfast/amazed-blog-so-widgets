@@ -13,5 +13,11 @@ for (var i = 0; i < slider.length; i++) {
     slidesPerView: 1,
     // autoHeight: true,
     spaceBetween: 40,
+    navigation: {
+      nextEl: ".swiper-next",
+      prevEl: ".swiper-prev",
+    },
+    rewind: true,
+    loop: false,
   });
 }
