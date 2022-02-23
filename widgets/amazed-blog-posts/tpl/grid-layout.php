@@ -33,12 +33,13 @@ $loop = new WP_Query( $post_args ); ?>
     <?php $do_not_duplicate = get_the_ID(); // Add to variable current posts on loop ?>
     <div <?php post_class( 'post-wrapper post-featured sm:absw-col-span-2 md:absw-col-span-6 lg:absw-col-span-11' ); ?>>
       <?php if ( in_array( 'thumbnail', $display ) ) : ?>
+	  <a href="<?php echo get_permalink(); ?>">
         <div class="post-carousel-image">
-          <a href="<?php echo get_permalink(); ?>">
+          
           <?php
           the_post_thumbnail( 'full', [ 'class' => 'absw-block absw-w-full absw-h-full absw-object-cover' ] );
           ?>
-          </a>
+          
         </div>
       <?php endif; ?>
       
@@ -71,6 +72,7 @@ $loop = new WP_Query( $post_args ); ?>
           <?php endif; ?>
         </div>
       <?php endif; ?>
+	  </a>
     </div>
   <?php endwhile; ?>
   <div class="post-grid-wrapper sm:absw-col-span-1 md:abswd-col-span-4 lg:absw-col-span-9">
