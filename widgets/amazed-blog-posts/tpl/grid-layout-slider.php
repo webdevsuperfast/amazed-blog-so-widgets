@@ -1,6 +1,28 @@
 <?php
+$post_args = siteorigin_widget_post_selector_process_query( $post );
+$term = get_term_by( 'slug', $post_args['tax_query'][0]['terms'], 'category' );
+
+$slider_navigation = '';
+$slider_navigation .= '<div class="slider-navigation absw-flex">';
+
+if ( ! empty( $term ) ) {
+  $term_link = get_term_link( $term, 'category' );
+  $slider_navigation .= '<a class="absw-mr-4" href="' . esc_url( $term_link ) . '">Show All</a>';
+} else {
+  $term_link = get_permalink( get_option( 'page_for_posts' ) );
+  $slider_navigation .= '<a class="absw-mr-4" href="' . esc_url( $term_link ) . '">Show All</a>';
+}
+
+$slider_navigation .= '<div class="swiper-prev">Prev</div>';
+$slider_navigation .= '<div class="swiper-next">Next</div>';
+
+$slider_navigation .= '</div>';
+
+$before_title = preg_replace( '/<h3(.*?)>/', '<div class="absw-flex absw-flex-nowrap absw-items-center"><h3 class="absw-grow widget-title">', $args['before_title'] );
+$after_title = preg_replace( '/<\/h3>/', '</h3>' . $slider_navigation . '</div>', $args['after_title'] );
+
 if ( $title ) {
-    echo $args['before_title'] . apply_filters( 'widget_title', $title ) . $args['after_title'];
+    echo $before_title . apply_filters( 'widget_title', $title ) . $after_title;
 }
 
 $widget_id = $args['widget_id'];
@@ -11,24 +33,24 @@ $attributes = array();
 $classes = array();
 $classes[] = 'amazed-blog-posts';
 $classes[] = 'amazed-blog-posts-' . (int) $widget_id;
-$classes[] = 'swiper-slide absw-w-full absw-block';
-// $classes[] = 'swiper-' . (int) $widget_id;
+$classes[] = 'swiper absw-w-full absw-block';
+// $classes[] = 'swiper-slide absw-w-full absw-block';
+$classes[] = 'swiper-' . (int) $widget_id;
 $classes[] = 'amazed-blog-posts-grid';
-$classes[] = 'absw-grid absw-grid-cols-none sm:absw-grid-rows-4 sm:absw-grid-cols-3 md:absw-grid-cols-10 lg:absw-grid-cols-20 absw-gap-8';
+// $classes[] = 'absw-grid absw-grid-cols-none sm:absw-grid-rows-4 sm:absw-grid-cols-3 md:absw-grid-cols-10 lg:absw-grid-cols-20 absw-gap-8';
 $classes[] = $class;
 
 $attributes = array(
     'class' => esc_attr( implode( ' ', $classes ) ),
     'id' => 'amazed-blog-posts-' . (int) $widget_id,
-    // 'data-instance' => (int)$widget_id
-); ?>
+    'data-instance' => (int)$widget_id
+);
 
-<?php $post_args = siteorigin_widget_post_selector_process_query( $post );
 $i = 1;
 $grid = 2;
 $loop = new WP_Query( $post_args ); ?>
-<div class="swiper swiper-<?php echo (int) $widget_id; ?> absw-w-full absw-h-full" data-instance="<?php echo (int) $widget_id; ?>"><div class="swiper-wrapper">
-<div <?php foreach( $attributes as $name => $value ) echo $name . '="' . $value . '" ' ?>>
+<div <?php foreach( $attributes as $name => $value ) echo $name . '="' . $value . '" ' ?>><div class="swiper-wrapper">
+<div class="swiper-slide absw-grid absw-grid-cols-none sm:absw-grid-rows-4 sm:absw-grid-cols-3 md:absw-grid-cols-10 lg:absw-grid-cols-20 absw-gap-8">
   <?php if ( $loop->have_posts() ) : while ( $loop->have_posts() ) : $loop->the_post(); ?>
   <?php if ( $i % 5 == 1 ) {
     $class = 'post-featured sm:absw-col-span-2 md:absw-col-span-6 lg:absw-col-span-11 sm:absw-row-span-full';
@@ -87,7 +109,7 @@ $loop = new WP_Query( $post_args ); ?>
     </div>
     <?php if ( $i % 5 == 0 ) { ?>
       </div><!-- end every 5th post -->
-      <div <?php foreach( $attributes as $name => $value ) echo $name . '="' . $value . '" ' ?>>
+      <div class="swiper-slide absw-grid absw-grid-cols-none sm:absw-grid-rows-4 sm:absw-grid-cols-3 md:absw-grid-cols-10 lg:absw-grid-cols-20 absw-gap-8">
     <?php } ?>
   <?php $i++; endwhile; wp_reset_query(); endif; ?>
 </div><!-- end every 5th post -->
