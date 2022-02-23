@@ -31,7 +31,12 @@ class ABSW_Widgets {
 	}
 
 	public function absw_enqueue_scripts() {
-		wp_enqueue_style( 'absw-style', plugin_dir_url( __FILE__ ) . 'assets/css/style.css' );
+		wp_enqueue_style( 'absw-style', plugin_dir_url( __FILE__ ) . 'assets/css/style.min.css' );
+		wp_enqueue_style( 'absw-swiper-css', plugin_dir_url( __FILE__ ) . 'assets/js/main.min.css' );
+
+		wp_register_script( 'absw-js', plugin_dir_url( __FILE__ ) . 'assets/js/main.min.js', array(), '1.0.0', true );
+
+		wp_enqueue_script( 'absw-js' );
 	}
 
 	public function absw_widget_folders( $folders ) {
