@@ -68,19 +68,19 @@ $loop = new WP_Query( $post_args ); ?>
       $classes[] = $slider_enable ? 'swiper-slide' : '';
     ?>
     <div <?php post_class( $classes ); ?>>
-      <?php if ( in_array( 'thumbnail', $display ) ) : ?>
+      <?php if ( in_array( 'thumbnail', $display ) && has_post_thumbnail() ) : ?>
         <div class="post-carousel-image absw-relative absw-leading-none">
-         
-          <?php
-          if ( $size == 'custom_size' && ! empty( $instance['structure']['size_width'] ) && ! empty( $instance['structure']['size_height'] ) ) {
-            $size = array(
-              (int) $instance['structure']['size_width'],
-              (int) $instance['structure']['size_height']
-            );
-          }
-          the_post_thumbnail( $size, ['class' => 'absw-block !absw-w-full !absw-h-48 absw-object-cover'] );
+          <a href="<?php echo get_permalink(); ?>">
+            <?php
+            if ( $size == 'custom_size' && ! empty( $instance['structure']['size_width'] ) && ! empty( $instance['structure']['size_height'] ) ) {
+              $size = array(
+                (int) $instance['structure']['size_width'],
+                (int) $instance['structure']['size_height']
+              );
+            }
+            the_post_thumbnail( $size, ['class' => 'absw-block !absw-w-full !absw-h-48 absw-object-cover'] );
           ?>
-          <a class="absw-absolute absw-w-full absw-h-full absw-top-0 absw-left-0" href="<?php echo get_permalink(); ?>">&nbsp;</a>
+          </a>
         </div>
       <?php endif; ?>
       
