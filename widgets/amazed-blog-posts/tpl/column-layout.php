@@ -21,6 +21,10 @@ $slider_navigation .= '<div class="swiper-next-'. $widget_id .'">Next</div>';
 
 $slider_navigation .= '</div>';
 
+if ( ! $slider_enable ) {
+  $slider_navigation = '';
+}
+
 $before_title = preg_replace( '/<h3(.*?)>/', '<div class="absw-flex absw-flex-nowrap absw-items-center"><h3 class="absw-grow widget-title">', $args['before_title'] );
 $after_title = preg_replace( '/<\/h3>/', '</h3>' . $slider_navigation . '</div>', $args['after_title'] );
 
@@ -34,14 +38,13 @@ $classes = array();
 $classes[] = 'amazed-blog-posts';
 $classes[] = 'amazed-blog-posts-column';
 $classes[] = 'amazed-blog-posts-column-' . (int) $widget_id;
-// $classes[] = 'absw-grid absw-grid-cols-none sm:absw-grid-cols-2 md:absw-grid-cols-4 absw-gap-8 absw-underline-none'; // Tailwind utility classes
-$classes[] = 'swiper absw-w-full absw-block';
-$classes[] = 'swiper-' . $widget_id;
+$classes[] = $slider_enable ? 'swiper absw-w-full absw-block' : '';
+$classes[] = $slider_enable ? 'swiper-' . $widget_id : '';
 $classes[] = $class;
 
 $attributes = array(
     'class' => esc_attr( implode( ' ', $classes ) ),
-    'id' => 'amazed-blog-posts-column' . (int)$widget_id,
+    'id' => 'amazed-blog-posts-column-' . (int)$widget_id,
     'data-instance' => (int)$widget_id,
     'data-spacing' => (int)$slider_space_between,
     'data-slides' => (int)$slider_per_view,
@@ -52,10 +55,19 @@ $loop = new WP_Query( $post_args ); ?>
 
 <div <?php foreach( $attributes as $name => $value ) echo $name . '="' . $value . '" ' ?>>
 <?php if ( $loop->have_posts() ) : ?>
-  <div class="swiper-wrapper">
+  <?php echo $slider_enable ? '<div class="swiper-wrapper">' : ''; ?>
   <?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
-    <?php $do_not_duplicate[] = $post->ID; // Add to variable current posts on loop ?>
-    <div <?php post_class( "post-wrapper swiper-slide absw-rounded absw-overflow-hidden absw-shadow absw-bg-gray-100" ); ?>>
+    <?php $do_not_duplicate[] = get_the_ID(); // Add to variable current posts on loop 
+      $classes = array(
+        'post-wrapper',
+        'absw-rounded',
+        'absw-overflow-hidden',
+        'absw-shadow', 
+        'absw-bg-gray-100'
+      );
+      $classes[] = $slider_enable ? 'swiper-slide' : '';
+    ?>
+    <div <?php post_class( $classes ); ?>>
       <?php if ( in_array( 'thumbnail', $display ) ) : ?>
         <div class="post-carousel-image absw-relative absw-leading-none">
          
@@ -107,5 +119,5 @@ $loop = new WP_Query( $post_args ); ?>
   <?php else : ?>
     <?php echo __( 'No posts found.', 'amazed-blog-so-widgets' ); ?>
   <?php endif; ?>
-  </div>
+  <?php echo $slider_enable ? '</div>' : ''; ?>
 </div>

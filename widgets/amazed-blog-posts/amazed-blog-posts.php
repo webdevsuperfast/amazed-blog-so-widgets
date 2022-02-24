@@ -155,6 +155,7 @@ class Amazed_Blog_Posts_Widget extends SiteOrigin_Widget {
 			'display' => $instance['structure']['display'],
 			'size' => $instance['structure']['size'],
       'content_type' => $instance['structure']['content_type'],
+      'slider_enable' => $instance['slider']['slider'],
       'slider_space_between' => $instance['slider']['slider_space_between'],
       'slider_per_view' => $instance['slider']['slider_per_view'],
 			'template' => $instance['template'],

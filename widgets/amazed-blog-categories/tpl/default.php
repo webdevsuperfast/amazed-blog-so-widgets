@@ -21,6 +21,10 @@ $slider_navigation .= '<div class="swiper-next-'. $widget_id .'">Next</div>';
 
 $slider_navigation .= '</div>';
 
+if ( ! $slider_enable ) {
+  $slider_navigation = '';
+}
+
 $before_title = preg_replace( '/<h3(.*?)>/', '<div class="absw-flex absw-flex-nowrap absw-items-center"><h3 class="absw-grow widget-title">', $args['before_title'] );
 $after_title = preg_replace( '/<\/h3>/', '</h3>' . $slider_navigation . '</div>', $args['after_title'] );
 
@@ -33,10 +37,9 @@ $attributes = array();
 $classes = array();
 $classes[] = 'amazed-blog-categories';
 $classes[] = 'amazed-blog-categories-' . (int) $widget_id;
-$classes[] = 'swiper';
-$classes[] = 'swiper-' . (int) $widget_id;
-$classes[] = 'absw-w-full absw-h-full';
-// $classes[] = 'absw-grid absw-grid-cols-none sm:absw-grid-cols-2 md:absw-grid-cols-4 absw-gap-8 absw-underline-none';
+$classes[] = $slider_enable ? 'swiper' : '';
+$classes[] = $slider_enable ? 'swiper-' . (int) $widget_id : '';
+$classes[] = $slider_enable ? 'absw-w-full absw-h-full' : 'absw-grid absw-grid-cols-none sm:absw-grid-cols-2 md:absw-grid-cols-4 absw-gap-8 absw-underline-none';
 $classes[] = $class;
 
 $attributes = array(
@@ -60,10 +63,10 @@ $catargs['number'] = $catsnum ? (int) $catsnum : 0;
 <?php $categories = get_terms( $catargs ); ?>
 
 <div <?php foreach( $attributes as $name => $value ) echo $name . '="' . $value . '" ' ?>>
-  <div class="swiper-wrapper">
+  <?php echo $slider_enable ? '<div class="swiper-wrapper">' : ''; ?>
   <?php if ( $categories ) : ?>
     <?php foreach( $categories as $category ) : ?>
-      <div class="swiper-slide category category-<?php echo $category->term_slug; ?>">
+      <div class="<?php echo $slider_enable ? 'swiper-slide' : ''; ?> category category-<?php echo $category->term_slug; ?>">
         <?php if ( in_array( 'thumbnail', $display ) && function_exists( 'z_taxonomy_image_url' ) ) : ?>
         <div class="category-image absw-overflow-hidden absw-shadow absw-rounded absw-mb-5 absw-leading-none">
           <?php 
@@ -99,5 +102,5 @@ $catargs['number'] = $catsnum ? (int) $catsnum : 0;
       </div>
     <?php endforeach; ?>
   <?php endif; ?>
-  </div><!-- end .swiper-wrapper -->
+  <?php echo $slider_enable ? '</div><!-- end .swiper-wrapper -->' : ''; ?>
 </div><!-- end .swiper -->
