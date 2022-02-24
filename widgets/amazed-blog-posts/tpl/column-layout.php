@@ -101,7 +101,6 @@ $loop = new WP_Query( $post_args ); ?>
           <?php endif; ?>
         </div>
       <?php endif; ?>
-	   </a>
     </div>
   <?php endwhile; ?>
     <?php wp_reset_query(); ?>
