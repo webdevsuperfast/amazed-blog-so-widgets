@@ -38,7 +38,7 @@ $classes = array();
 $classes[] = 'amazed-blog-posts';
 $classes[] = 'amazed-blog-posts-column';
 $classes[] = 'amazed-blog-posts-column-' . (int) $widget_id;
-$classes[] = $slider_enable ? 'swiper absw-w-full absw-block' : '';
+$classes[] = $slider_enable ? 'swiper absw-w-full absw-block' : 'absw-grid absw-grid-cols-none sm:absw-grid-cols-2 md:absw-grid-cols-4 absw-gap-8';
 $classes[] = $slider_enable ? 'swiper-' . $widget_id : '';
 $classes[] = $class;
 
