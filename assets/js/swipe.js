@@ -4,18 +4,20 @@ import "swiper/css";
 import "swiper/css/navigation";
 
 let slider = document.getElementsByClassName("swiper");
+// let slider2 = document.getElementsByClassName("amazed-blog-posts-column");
 
 for (var i = 0; i < slider.length; i++) {
-  // console.log(slider[i].dataset.instance);
-  const mySwiper = new Swiper(slider[i], {
-    // const swiper = new Swiper(".swiper-" + i.grid.dataset.instance, {
+  const instance = slider[i].dataset.instance;
+  const slides = slider[i].dataset.slides;
+  const spacing = slider[i].dataset.spacing;
+  const swiper = new Swiper(".swiper-" + slider[i].dataset.instance, {
     modules: [Navigation],
-    slidesPerView: 1,
+    slidesPerView: parseInt(slides),
     // autoHeight: true,
-    spaceBetween: 40,
+    spaceBetween: parseInt(spacing),
     navigation: {
-      nextEl: ".swiper-next",
-      prevEl: ".swiper-prev",
+      nextEl: ".swiper-next-" + instance,
+      prevEl: ".swiper-prev-" + instance,
     },
     rewind: false,
     loop: false,
