@@ -9,6 +9,13 @@ module.exports = {
   },
   important: false,
   theme: {
+    screens: {
+      sm: "576px",
+      md: "768px",
+      lg: "992px",
+      xl: "1200px",
+      "2xl": "1400px",
+    },
     extend: {
       gridTemplateColumns: {
         20: "repeat(20, minmax(0, 1fr))", // 55/45
