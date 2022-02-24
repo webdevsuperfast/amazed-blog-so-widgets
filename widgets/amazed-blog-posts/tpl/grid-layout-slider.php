@@ -2,6 +2,9 @@
 $post_args = siteorigin_widget_post_selector_process_query( $post );
 $term = get_term_by( 'slug', $post_args['tax_query'][0]['terms'], 'category' );
 
+$widget_id = $args['widget_id'];
+$widget_id = preg_replace( '/[^0-9]/', '', $widget_id );
+
 $slider_navigation = '';
 $slider_navigation .= '<div class="slider-navigation absw-flex">';
 
@@ -13,20 +16,17 @@ if ( ! empty( $term ) ) {
   $slider_navigation .= '<a class="absw-mr-4" href="' . esc_url( $term_link ) . '">Show All</a>';
 }
 
-$slider_navigation .= '<div class="swiper-prev">Prev</div>';
-$slider_navigation .= '<div class="swiper-next">Next</div>';
+$slider_navigation .= '<div class="swiper-prev-'. $widget_id .'">Prev</div>';
+$slider_navigation .= '<div class="swiper-next-'. $widget_id .'">Next</div>';
 
 $slider_navigation .= '</div>';
 
 $before_title = preg_replace( '/<h3(.*?)>/', '<div class="absw-flex absw-flex-nowrap absw-items-center"><h3 class="absw-grow widget-title">', $args['before_title'] );
 $after_title = preg_replace( '/<\/h3>/', '</h3>' . $slider_navigation . '</div>', $args['after_title'] );
 
-if ( $title ) {
-    echo $before_title . apply_filters( 'widget_title', $title ) . $after_title;
+if ( $title || ! empty( $term ) ) {
+  echo $before_title . apply_filters( 'widget_title', $title ) . $after_title;
 }
-
-$widget_id = $args['widget_id'];
-$widget_id = preg_replace( '/[^0-9]/', '', $widget_id );
 
 $attributes = array();
 
@@ -36,14 +36,18 @@ $classes[] = 'amazed-blog-posts-' . (int) $widget_id;
 $classes[] = 'swiper absw-w-full absw-block';
 // $classes[] = 'swiper-slide absw-w-full absw-block';
 $classes[] = 'swiper-' . (int) $widget_id;
-$classes[] = 'amazed-blog-posts-grid';
+$classes[] = 'amazed-blog-posts-grid-slider';
+$classes[] = 'amazed-blog-posts-grid-slider-' . (int) $widget_id;
+// $classes[] = 'amazed-blog-posts-grid';
 // $classes[] = 'absw-grid absw-grid-cols-none sm:absw-grid-rows-4 sm:absw-grid-cols-3 md:absw-grid-cols-10 lg:absw-grid-cols-20 absw-gap-8';
 $classes[] = $class;
 
 $attributes = array(
     'class' => esc_attr( implode( ' ', $classes ) ),
-    'id' => 'amazed-blog-posts-' . (int) $widget_id,
-    'data-instance' => (int)$widget_id
+    'id' => 'amazed-blog-posts-grid-slider-' . (int) $widget_id,
+    'data-instance' => (int)$widget_id,
+    'data-autoplay' => (bool)$slider_autoplay,
+    'data-slides' => (int)$slider_per_view,
 );
 
 $i = 1;
