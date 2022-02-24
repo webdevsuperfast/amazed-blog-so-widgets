@@ -38,11 +38,9 @@ $classes = array();
 $classes[] = 'amazed-blog-posts';
 $classes[] = 'amazed-blog-posts-' . (int) $widget_id;
 $classes[] = $slider_enable ? 'swiper absw-w-full absw-block' : '';
-// $classes[] = 'swiper-slide absw-w-full absw-block';
 $classes[] = $slider_enable ? 'swiper-' . (int) $widget_id : '';
-$classes[] = 'amazed-blog-posts-grid-slider';
-$classes[] = 'amazed-blog-posts-grid-slider-' . (int) $widget_id;
-// $classes[] = 'amazed-blog-posts-grid';
+$classes[] = 'amazed-blog-posts-grid';
+$classes[] = 'amazed-blog-posts-grid-' . (int) $widget_id;
 $classes[] = $slider_enable ? '' : 'absw-grid absw-grid-cols-none sm:absw-grid-rows-4 sm:absw-grid-cols-3 md:absw-grid-cols-10 lg:absw-grid-cols-20 absw-gap-8';
 $classes[] = $class;
 

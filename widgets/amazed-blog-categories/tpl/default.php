@@ -103,4 +103,4 @@ $catargs['number'] = $catsnum ? (int) $catsnum : 0;
     <?php endforeach; ?>
   <?php endif; ?>
   <?php echo $slider_enable ? '</div><!-- end .swiper-wrapper -->' : ''; ?>
-</div><!-- end .swiper -->
+</div><!-- end .amazed-blog-categories -->

@@ -2,10 +2,6 @@
 $post_args = siteorigin_widget_post_selector_process_query( $post );
 $term = get_term_by( 'slug', $post_args['tax_query'][0]['terms'], 'category' );
 
-// if ( ! $slider_enable ) {
-//   echo 'test';
-// }
-
 $widget_id = $args['widget_id'];
 $widget_id = preg_replace( '/[^0-9]/', '', $widget_id );
 
