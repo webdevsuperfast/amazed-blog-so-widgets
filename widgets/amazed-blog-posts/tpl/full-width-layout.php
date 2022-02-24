@@ -52,7 +52,7 @@ $loop = new WP_Query( $post_args ); ?>
   <?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
     <?php $do_not_duplicate[] = $post->ID; // Add to variable current posts on loop ?>
     <div <?php post_class( "post-wrapper" ); ?>>
-	<a href="<?php echo get_permalink(); ?>">
+	<a href="<?php echo get_permalink(); ?>" class="absolute">
       <?php if ( in_array( 'thumbnail', $display ) ) : ?>
         <div class="post-carousel-image">
           <?php

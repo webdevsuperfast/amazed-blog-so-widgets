@@ -82,8 +82,10 @@ $loop = new WP_Query( $post_args ); ?>
       <?php endif; ?>
       
       <?php if ( in_array( 'title', $display ) || in_array( 'content', $display ) || in_array( 'info', $display ) || in_array( 'meta', $display ) ) : ?>
+      
         <div class="content-wrap <?php echo $i % 5 == 1 ? 'absw-absolute absw-left-0 absw-bottom-0 absw-w-full' : ( has_post_thumbnail() ? 'absw-col-span-3' : 'absw-col-span-full' ); ?>">
-          <?php if ( in_array( 'meta', $display) ) : ?>
+        <a href="<?php echo get_permalink(); ?>" class="absolute"></a> 
+        <?php if ( in_array( 'meta', $display) ) : ?>
             <div class="post-metadata">
               <?php the_category(', '); ?>
             </div>
