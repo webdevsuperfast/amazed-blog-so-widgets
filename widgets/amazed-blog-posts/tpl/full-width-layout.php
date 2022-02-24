@@ -20,8 +20,8 @@ if ( ! empty( $term ) ) {
   $slider_navigation .= '<a class="absw-mr-4" href="' . esc_url( $term_link ) . '">Show All</a>';
 }
 
-$slider_navigation .= '<div class="swiper-prev-'. $widget_id .'">Prev</div>';
-$slider_navigation .= '<div class="swiper-next-'. $widget_id .'">Next</div>';
+$slider_navigation .= '<div class="swiper-prev-'. (int) $widget_id .'">Prev</div>';
+$slider_navigation .= '<div class="swiper-next-'. (int) $widget_id .'">Next</div>';
 
 $slider_navigation .= '</div>';
 
