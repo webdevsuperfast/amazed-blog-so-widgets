@@ -58,8 +58,13 @@ $loop = new WP_Query( $post_args ); ?>
 <?php echo $slider_enable ? '<div class="swiper-wrapper">' : ''; ?>
 <?php if ( $loop->have_posts() ) : ?>
   <?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
-    <?php $do_not_duplicate[] = $post->ID; // Add to variable current posts on loop ?>
-    <div <?php post_class( $slider_enable ? 'post-wrapper swiper-slide' : 'post-wrapper' ); ?>>
+    <?php $do_not_duplicate[] = get_the_ID();
+    $classes = array(
+      'post-wrapper',
+      $slider_enable ? 'swiper-slide' : '',
+      'absw-relative'
+    ); ?>
+    <div <?php post_class( $classes ); ?>>
       <?php if ( in_array( 'thumbnail', $display ) ) : ?>
         <div class="post-carousel-image">
           <?php
@@ -67,10 +72,11 @@ $loop = new WP_Query( $post_args ); ?>
           ?>
           
         </div>
+        <a href="<?php the_permalink(); ?>" class="absw-absolute absw-left-0 absw-top-0 absw-w-full absw-h-full absw-z-20 post-carousel-link absw-indent-[-9999px]">View Post</a>
       <?php endif; ?>
       
       <?php if ( in_array( 'title', $display ) || in_array( 'content', $display ) || in_array( 'info', $display ) || in_array( 'meta', $display ) ) : ?>
-        <div class="content-wrap">
+        <div class="content-wrap absw-absolute absw-w-full absw-bottom-0 absw-left-0 absw-z-10">
           <?php if ( in_array( 'meta', $display) ) : ?>
             <div class="post-metadata">
               <?php the_category(', '); ?>
