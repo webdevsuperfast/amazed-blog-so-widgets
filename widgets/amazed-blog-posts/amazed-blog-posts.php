@@ -118,7 +118,6 @@ class Amazed_Blog_Posts_Widget extends SiteOrigin_Widget {
             'column-layout' => __( 'Column', 'amazed-blog-so-widgets' ),
             'grid-layout' => __( 'Grid', 'amazed-blog-so-widgets' ),
             'full-width-layout' => __( 'Full Width', 'amazed-blog-so-widgets' ),
-            'grid-layout-slider' => __( 'Grid Slider', 'amazed-blog-so-widgets' ),
           ),
           'default' => 'column-layout'
         )
@@ -133,15 +132,12 @@ class Amazed_Blog_Posts_Widget extends SiteOrigin_Widget {
           break;
 
         case 'grid-layout':
+        case 'grid-layout-slider':
           return 'grid-layout';
           break;
         
         case 'full-width-layout':
           return 'full-width-layout';
-          break;
-        
-        case 'grid-layout-slider':
-          return 'grid-layout-slider';
           break;
       }
     }
