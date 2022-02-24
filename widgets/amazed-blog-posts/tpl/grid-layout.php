@@ -62,7 +62,7 @@ $loop = new WP_Query( $post_args ); ?>
   <?php if ( $i % 5 == 1 ) {
     $class = 'post-featured sm:absw-col-span-2 md:absw-col-span-6 lg:absw-col-span-11 sm:absw-row-span-full';
   } else {
-    $class = 'absw-grid absw-grid-cols-4 absw-gap-4 sm:absw-col-span-1 md:abswd-col-span-4 lg:absw-col-span-9 sm:absw-row-span-1';
+    $class = 'absw-grid absw-grid-cols-4 absw-gap-4 sm:absw-col-span-4 md:abswd-col-span-4 lg:absw-col-span-9 sm:absw-row-span-1';
   } ?>
   <div <?php post_class( 'post-wrapper absw-relative ' . $class ); ?>>
       <?php if ( in_array( 'thumbnail', $display ) && has_post_thumbnail() ) : ?>
