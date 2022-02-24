@@ -67,6 +67,9 @@ $loop = new WP_Query( $post_args ); ?>
   <div <?php post_class( 'post-wrapper absw-relative ' . $class ); ?>>
       <?php if ( in_array( 'thumbnail', $display ) && has_post_thumbnail() ) : ?>
         <div class="post-carousel-image absw-relative <?php echo $i % 5 == 1 ? 'absw-w-full absw-h-full' : 'absw-col-span-1';?>">
+          <?php if ( $i % 5 != 1 ) {
+            echo '<a href="' . get_permalink() . '" class="absw-block">';
+          } ?>
           <?php
             if ( $size == 'custom_size' && ! empty( $instance['structure']['size_width'] ) && ! empty( $instance['structure']['size_height'] ) ) {
               $size = array(
@@ -80,12 +83,17 @@ $loop = new WP_Query( $post_args ); ?>
               the_post_thumbnail( $size, ['class' => 'absw-object-cover' ] );
             }
           ?>
-          <a class="absw-absolute absw-w-full absw-h-full absw-top-0 absw-left-0" href="<?php echo get_permalink(); ?>">&nbsp;</a>
+          <?php if ( $i % 5 != 1 ) {
+            echo '</a>';
+          } ?>
+          <?php if ( $i % 5 == 1 ) { ?>
+            <a class="absw-absolute absw-w-full absw-h-full absw-top-0 absw-left-0 absw-indent-[-9999px] absw-z-20" href="<?php echo get_permalink(); ?>"><?php _e( 'Read More', 'amazed-blog-so-widgets' ); ?></a>
+          <?php } ?>
         </div>
       <?php endif; ?>
       
       <?php if ( in_array( 'title', $display ) || in_array( 'content', $display ) || in_array( 'info', $display ) || in_array( 'meta', $display ) ) : ?>
-        <div class="content-wrap <?php echo $i % 5 == 1 ? 'absw-absolute absw-left-0 absw-bottom-0 absw-w-full' : ( has_post_thumbnail() ? 'absw-col-span-3' : 'absw-col-span-full' ); ?>">
+        <div class="content-wrap <?php echo $i % 5 == 1 ? 'absw-absolute absw-left-0 absw-bottom-0 absw-w-full absw-z-10' : ( has_post_thumbnail() ? 'absw-col-span-3' : 'absw-col-span-full' ); ?>">
           <?php if ( in_array( 'meta', $display) ) : ?>
             <div class="post-metadata">
               <?php the_category(', '); ?>
