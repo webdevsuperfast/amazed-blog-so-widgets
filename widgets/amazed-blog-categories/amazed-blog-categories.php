@@ -65,6 +65,38 @@ class Amazed_Blog_Categories_Widget extends SiteOrigin_Widget {
             )
           )
         ),
+        'slider' => array(
+          'type' => 'section',
+          'label' => __( 'Slider Settings', 'amazed-blog-so-widgets' ),
+          'hide' => true,
+          'fields' => array(
+            'slider' => array(
+              'type' => 'checkbox',
+              'label' => __( 'Enable Slider', 'amazed-blog-so-widgets' ),
+              'default' => false,
+              'state_emitter' => array(
+                'callback' => 'conditional',
+                'args' => array( 'slider: val' )
+              )
+            ),
+            'slider_space_between' => array(
+              'type' => 'number',
+              'label' => __( 'Space Between', 'amazed-blog-so-widgets' ),
+              'default' => 40,
+              'state_handler' => array(
+                'slider[true]' => array( 'show' )
+              )
+            ),
+            'slider_per_view' => array(
+              'type' => 'number', 
+              'label' => __( 'Slides Per View', 'amazed-blog-so-widgets' ),
+              'default' => 1,
+              'state_handler' => array(
+                'slider[true]' => array( 'show' )
+              )
+            )
+          ),
+        ),
         'template' => array(
           'type' => 'select',
           'label' => __( 'Choose template', 'amazed-blog-so-widgets' ),
@@ -92,6 +124,9 @@ class Amazed_Blog_Categories_Widget extends SiteOrigin_Widget {
       'catsnum' => $instance['catsnum'],
 			'structure' => $instance['structure'],
 			'size' => $instance['structure']['size'],
+      'slider_enable' => $instance['slider']['slider'],
+      'slider_space_between' => $instance['slider']['slider_space_between'],
+      'slider_per_view' => $instance['slider']['slider_per_view'],
 			'template' => $instance['template'],
       'display' => $instance['structure']['display'],
     	);

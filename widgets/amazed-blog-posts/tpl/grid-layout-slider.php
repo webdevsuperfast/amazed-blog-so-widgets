@@ -24,7 +24,7 @@ $slider_navigation .= '</div>';
 $before_title = preg_replace( '/<h3(.*?)>/', '<div class="absw-flex absw-flex-nowrap absw-items-center"><h3 class="absw-grow widget-title">', $args['before_title'] );
 $after_title = preg_replace( '/<\/h3>/', '</h3>' . $slider_navigation . '</div>', $args['after_title'] );
 
-if ( $title ) {
+if ( $title || ! empty( $term ) ) {
   echo $before_title . apply_filters( 'widget_title', $title ) . $after_title;
 }
 
@@ -32,48 +32,57 @@ $attributes = array();
 
 $classes = array();
 $classes[] = 'amazed-blog-posts';
-$classes[] = 'amazed-blog-posts-column';
-$classes[] = 'amazed-blog-posts-column-' . (int) $widget_id;
-// $classes[] = 'absw-grid absw-grid-cols-none sm:absw-grid-cols-2 md:absw-grid-cols-4 absw-gap-8 absw-underline-none'; // Tailwind utility classes
+$classes[] = 'amazed-blog-posts-' . (int) $widget_id;
 $classes[] = 'swiper absw-w-full absw-block';
-$classes[] = 'swiper-' . $widget_id;
+// $classes[] = 'swiper-slide absw-w-full absw-block';
+$classes[] = 'swiper-' . (int) $widget_id;
+$classes[] = 'amazed-blog-posts-grid-slider';
+$classes[] = 'amazed-blog-posts-grid-slider-' . (int) $widget_id;
+// $classes[] = 'amazed-blog-posts-grid';
+// $classes[] = 'absw-grid absw-grid-cols-none sm:absw-grid-rows-4 sm:absw-grid-cols-3 md:absw-grid-cols-10 lg:absw-grid-cols-20 absw-gap-8';
 $classes[] = $class;
 
 $attributes = array(
     'class' => esc_attr( implode( ' ', $classes ) ),
-    'id' => 'amazed-blog-posts-column' . (int)$widget_id,
+    'id' => 'amazed-blog-posts-grid-slider-' . (int) $widget_id,
     'data-instance' => (int)$widget_id,
     'data-spacing' => (int)$slider_space_between,
     'data-slides' => (int)$slider_per_view,
-); ?>
+);
 
-<?php
+$i = 1;
+$grid = 2;
 $loop = new WP_Query( $post_args ); ?>
-
-<div <?php foreach( $attributes as $name => $value ) echo $name . '="' . $value . '" ' ?>>
-<?php if ( $loop->have_posts() ) : ?>
-  <div class="swiper-wrapper">
-  <?php while ( $loop->have_posts() ) : $loop->the_post(); ?>
-    <?php $do_not_duplicate[] = $post->ID; // Add to variable current posts on loop ?>
-    <div <?php post_class( "post-wrapper swiper-slide absw-rounded absw-overflow-hidden absw-shadow absw-bg-gray-100" ); ?>>
-      <?php if ( in_array( 'thumbnail', $display ) ) : ?>
-        <div class="post-carousel-image absw-relative absw-leading-none">
-         
+<div <?php foreach( $attributes as $name => $value ) echo $name . '="' . $value . '" ' ?>><div class="swiper-wrapper">
+<div class="swiper-slide absw-grid absw-grid-cols-none sm:absw-grid-rows-4 sm:absw-grid-cols-3 md:absw-grid-cols-10 lg:absw-grid-cols-20 absw-gap-8">
+  <?php if ( $loop->have_posts() ) : while ( $loop->have_posts() ) : $loop->the_post(); ?>
+  <?php if ( $i % 5 == 1 ) {
+    $class = 'post-featured sm:absw-col-span-2 md:absw-col-span-6 lg:absw-col-span-11 sm:absw-row-span-full';
+  } else {
+    $class = 'absw-grid absw-grid-cols-4 absw-gap-4 sm:absw-col-span-1 md:abswd-col-span-4 lg:absw-col-span-9 sm:absw-row-span-1';
+  } ?>
+  <div <?php post_class( 'post-wrapper absw-relative ' . $class ); ?>>
+      <?php if ( in_array( 'thumbnail', $display ) && has_post_thumbnail() ) : ?>
+        <div class="post-carousel-image absw-relative <?php echo $i % 5 == 1 ? 'absw-w-full absw-h-full' : 'absw-col-span-1';?>">
           <?php
-          if ( $size == 'custom_size' && ! empty( $instance['structure']['size_width'] ) && ! empty( $instance['structure']['size_height'] ) ) {
-            $size = array(
-              (int) $instance['structure']['size_width'],
-              (int) $instance['structure']['size_height']
-            );
-          }
-          the_post_thumbnail( $size, ['class' => 'absw-block absw-w-full absw-h-48 absw-object-cover'] );
+            if ( $size == 'custom_size' && ! empty( $instance['structure']['size_width'] ) && ! empty( $instance['structure']['size_height'] ) ) {
+              $size = array(
+                (int) $instance['structure']['size_width'],
+                (int) $instance['structure']['size_height']
+              );
+            }
+            if ( $i % 5 == 1 ) {
+              the_post_thumbnail( 'full', ['class' => 'absw-absolute !absw-w-full !absw-h-full absw-object-cover' ] );
+            } else {
+              the_post_thumbnail( $size, ['class' => 'absw-object-cover' ] );
+            }
           ?>
-         
+          <a class="absw-absolute absw-w-full absw-h-full absw-top-0 absw-left-0" href="<?php echo get_permalink(); ?>">&nbsp;</a>
         </div>
       <?php endif; ?>
       
       <?php if ( in_array( 'title', $display ) || in_array( 'content', $display ) || in_array( 'info', $display ) || in_array( 'meta', $display ) ) : ?>
-        <div class="content-wrap absw-p-5">
+        <div class="content-wrap <?php echo $i % 5 == 1 ? 'absw-absolute absw-left-0 absw-bottom-0 absw-w-full' : ( has_post_thumbnail() ? 'absw-col-span-3' : 'absw-col-span-full' ); ?>">
           <?php if ( in_array( 'meta', $display) ) : ?>
             <div class="post-metadata">
               <?php the_category(', '); ?>
@@ -101,12 +110,11 @@ $loop = new WP_Query( $post_args ); ?>
           <?php endif; ?>
         </div>
       <?php endif; ?>
-	   </a>
     </div>
-  <?php endwhile; ?>
-    <?php wp_reset_query(); ?>
-  <?php else : ?>
-    <?php echo __( 'No posts found.', 'amazed-blog-so-widgets' ); ?>
-  <?php endif; ?>
-  </div>
-</div>
+    <?php if ( $i % 5 == 0 ) { ?>
+      </div><!-- end every 5th post -->
+      <div class="swiper-slide absw-grid absw-grid-cols-none sm:absw-grid-rows-4 sm:absw-grid-cols-3 md:absw-grid-cols-10 lg:absw-grid-cols-20 absw-gap-8">
+    <?php } ?>
+  <?php $i++; endwhile; wp_reset_query(); endif; ?>
+</div><!-- end every 5th post -->
+</div></div>
