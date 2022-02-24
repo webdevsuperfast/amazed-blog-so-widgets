@@ -39,7 +39,7 @@ $attributes = array(
     'class' => esc_attr( implode( ' ', $classes ) ),
     'id' => 'amazed-blog-posts-' . (int)$widget_id,
     'data-instance' => (int)$widget_id,
-    'data-autoplay' => (bool)$slider_autoplay,
+    'data-spacing' => (int)$slider_space_between,
     'data-slides' => (int)$slider_per_view,
 ); ?>
 
