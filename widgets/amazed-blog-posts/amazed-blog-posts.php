@@ -111,6 +111,25 @@ class Amazed_Blog_Posts_Widget extends SiteOrigin_Widget {
             )
           ),
         ),
+        'responsive' => array(
+          'type' => 'section',
+          'label' => __( 'Responsive Settings', 'amazed-blog-so-widgets' ),
+          'hide' => true,
+          'fields' => array(
+            'responsive_mobile' => array(
+              'type' => 'number',
+              'label' => __( 'Mobile', 'amazed-blog-so-widgets' ),
+              'default' => 1,
+              'description' => __( 'Slides to show on mobile.', 'amazed-blog-so-widgets' )
+            ),
+            'responsive_tablet' => array(
+              'type' => 'number',
+              'label' => __( 'Tablet', 'amazed-blog-so-widgets' ),
+              'default' => 1,
+              'description' => __( 'Slides to show on tablets.', 'amazed-blog-so-widgets' )
+            ),
+          )
+        ),
         'template' => array(
           'type' => 'select',
           'label' => __( 'Choose template', 'amazed-blog-so-widgets' ),
@@ -154,6 +173,8 @@ class Amazed_Blog_Posts_Widget extends SiteOrigin_Widget {
       'slider_enable' => $instance['slider']['slider'],
       'slider_space_between' => $instance['slider']['slider_space_between'],
       'slider_per_view' => $instance['slider']['slider_per_view'],
+      'responsive_mobile' => $instance['responsive']['responsive_mobile'],
+      'responsive_tablet' => $instance['responsive']['responsive_tablet'],
 			'template' => $instance['template'],
     	);
     }
