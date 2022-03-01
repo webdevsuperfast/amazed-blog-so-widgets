@@ -16,8 +16,8 @@ if ( ! empty( $term ) ) {
   $slider_navigation .= '<a class="absw-mr-4" href="' . esc_url( $term_link ) . '">View More</a>';
 }
 
-$slider_navigation .= '<div class="swiper-prev-'. (int) $widget_id .'">'. apply_filters( 'absw_prev_text' , 'Prev' ) .'</div>';
-$slider_navigation .= '<div class="swiper-next-'. (int) $widget_id .'">'. apply_filters( 'absw_next_text', 'Next' ) .'</div>';
+// $slider_navigation .= '<div class="swiper-prev-'. (int) $widget_id .'">'. apply_filters( 'absw_prev_text' , 'Prev' ) .'</div>';
+// $slider_navigation .= '<div class="swiper-next-'. (int) $widget_id .'">'. apply_filters( 'absw_next_text', 'Next' ) .'</div>';
 
 $slider_navigation .= '</div>';
 
@@ -46,7 +46,7 @@ $classes[] = $class;
 
 $attributes = array(
     'class' => esc_attr( implode( ' ', $classes ) ),
-    'id' => 'amazed-blog-posts-grid-slider-' . (int) $widget_id,
+    'id' => 'amazed-blog-posts-grid-' . (int) $widget_id,
     'data-instance' => (int)$widget_id,
     'data-spacing' => (int)$slider_space_between,
     'data-slides' => (int)$slider_per_view,
@@ -58,7 +58,7 @@ $i = 1;
 $grid = 2;
 $loop = new WP_Query( $post_args ); ?>
 <div <?php foreach( $attributes as $name => $value ) echo $name . '="' . $value . '" ' ?>>
-<?php echo $slider_enable ? '<div class="swiper-wrapper">' : ''; ?>
+<?php echo $slider_enable ? '<div class="amaze-grid">' : ''; ?>
 <?php echo $slider_enable ? '<div class="swiper-slide absw-grid absw-grid-cols-none sm:absw-grid-rows-4 sm:absw-grid-cols-3 md:absw-grid-cols-10 lg:absw-grid-cols-20 absw-gap-8">' : ''; ?>
   <?php if ( $loop->have_posts() ) : while ( $loop->have_posts() ) : $loop->the_post(); ?>
   <?php if ( $i % 5 == 1 ) {
