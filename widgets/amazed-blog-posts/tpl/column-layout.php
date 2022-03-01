@@ -10,10 +10,10 @@ $slider_navigation .= '<div class="slider-navigation absw-flex">';
 
 if ( ! empty( $term ) ) {
   $term_link = get_term_link( $term, 'category' );
-  $slider_navigation .= '<a class="absw-mr-4" href="' . esc_url( $term_link ) . '">Show All</a>';
+  $slider_navigation .= '<a class="absw-mr-4" href="' . esc_url( $term_link ) . '">View More</a>';
 } else {
   $term_link = get_permalink( get_option( 'page_for_posts' ) );
-  $slider_navigation .= '<a class="absw-mr-4" href="' . esc_url( $term_link ) . '">Show All</a>';
+  $slider_navigation .= '<a class="absw-mr-4" href="' . esc_url( $term_link ) . '">View More</a>';
 }
 
 $slider_navigation .= '<div class="swiper-prev-'. (int) $widget_id .'">'. apply_filters( 'absw_prev_text' , 'Prev' ) .'</div>';
