@@ -18,7 +18,7 @@ $classes[] = $class;
 
 $attributes = array(
     'class' => esc_attr( implode( ' ', $classes ) ),
-    'id' => 'amazed-blog-categories-' . (int)$widget_id,
+    'id' => 'amazed-blog-image-carousel-' . (int)$widget_id,
     'data-instance' => (int)$widget_id,
     'data-spacing' => (int)$slider_space_between,
     'data-slides' => (int)$slider_per_view,
@@ -32,10 +32,6 @@ $attributes = array(
     <?php echo $slider_enable ? '<div class="swiper-wrapper">' : ''; ?>
       <?php foreach( $images as $image ) {
         $link = sow_esc_url( $image['link'] );
-        $alt = $image['alt'];
-        $imagesource = wp_get_attachment_image_src( $image['image'], 'full' );
-        $url = $imagesource[0];
-
         echo $slider_enable ?'<div class="swiper-slide">' : '';
         echo $link ? '<a href="'.$link.'">' : '';
           echo wp_get_attachment_image( $image['image'], $size, '', array( 'class' => 'absw-object-cover !absw-w-full' ) );
