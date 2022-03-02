@@ -38,14 +38,7 @@ $attributes = array(
 
         echo $slider_enable ?'<div class="swiper-slide">' : '';
         echo $link ? '<a href="'.$link.'">' : '';
-          if ( $options['lazyload'] ) {
-            echo wp_get_attachment_image( $image['image'], $imageattr['size'], null, array(
-              'class' => 'owl-lazy',
-              'data-src' => wp_get_attachment_image_url( $image['image'], $imageattr['size'] )
-            ) );
-          } else {
-            echo wp_get_attachment_image( $image['image'], $imageattr['size'] );
-          }
+          echo wp_get_attachment_image( $image['image'], $imageattr['size'] );
         echo $link ? '</a>' : '';
         echo $slider_enable ? '</div>' : '';
       } ?>
