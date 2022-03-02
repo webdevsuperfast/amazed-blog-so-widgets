@@ -4,7 +4,7 @@ Plugin Name: Amazed Blog SiteOrigin Widgets
 Plugin URI: https://amazed.blog/amazed-blog-so-widgets
 GitLab Plugin URI: https://gitlab.com/webdevsuperfast/amazed-blog-so-widgets
 Description: Amazed Blog SiteOrigin Widgets is a WordPress widgets collection curated for Amazed Blog.
-Version: 	1.0.23
+Version: 	1.0.24
 Author: 	Amazed Blog
 Author URI: https://amazed.blog
 License: GPL2
