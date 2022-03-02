@@ -48,7 +48,8 @@ class ABSW_Widgets {
 	public function absw_filter_active_widgets( $active ) {
 		$active['amazed-blog-posts'] = true;
 		$active['amazed-blog-categories'] = true;
-
+//rawb-image-carousel
+$active['rawb-image-carousel'] = true;
 		return $active;
 	}
 }

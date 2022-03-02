@@ -1,8 +1,8 @@
 <?php
 /*
-Widget Name: RA Image Carousel
+Widget Name: Amazed Blog Posts
 Description: A simple image carousel widget using Owl Carousel.
-Author: Rotsen Mark Acob
+Author: Amazed Blog
 Author URI: http://rotsenacob.com
 */
 
