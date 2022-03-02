@@ -10,9 +10,9 @@ class ABSW_Image_Carousel_Widget extends SiteOrigin_Widget {
     function __construct() {
         parent::__construct(
             'amazed-blog-image-carousel',
-            __( 'Amazed Blog Image Carousel', 'absw-blog-so-widgets' ),
+            __( 'Amazed Blog Image Carousel', 'amazed-blog-so-widgets' ),
             array(
-                'description' => __( 'A simple image carousel widget.', 'absw-blog-so-widgets' ),
+                'description' => __( 'A simple image carousel widget.', 'amazed-blog-so-widgets' ),
                 'help' => ''
             ),
             array(),
@@ -22,20 +22,36 @@ class ABSW_Image_Carousel_Widget extends SiteOrigin_Widget {
     }
 
 		function get_widget_form() {
+      global $_wp_additional_image_sizes;
+ 
+        $sizes = array(
+        'full' => __( 'Full', 'ra-widgets-bundle' )
+      );
+
+      $get_intermediate_image_sizes = get_intermediate_image_sizes();
+
+      
+      
+      foreach( $get_intermediate_image_sizes as $_size ) {
+        if ( in_array( $_size, array( 'thumbnail', 'medium', 'large' ) ) ) {
+          $sizes[ $_size ] = ucwords( $_size ); // strtouppercase
+        }
+      }
+
 			return array(
 				'title' => array(
 					'type' => 'text',
-					'label' => __( 'Title', 'ra-widgets-bundle' ),
+					'label' => __( 'Title', 'amazed-blog-so-widgets' ),
 					'default' => ''
 				),
 				'class' => array(
 					'type' => 'text',
-					'label' => __( 'Class', 'ra-widgets-bundle' ),
+					'label' => __( 'Class', 'amazed-blog-so-widgets' ),
 				),
 				'images' => array(
 					'type' => 'repeater',
-					'label' => __( 'Add Images', 'ra-widgets-bundle' ),
-					'item_name' => __( 'Image', 'ra-widgets-bundle' ),
+					'label' => __( 'Add Images', 'amazed-blog-so-widgets' ),
+					'item_name' => __( 'Image', 'amazed-blog-so-widgets' ),
 					'item_label' => array(
 						'selector' => "[id*='image']",
 						'update_event' => 'change',
@@ -63,13 +79,13 @@ class ABSW_Image_Carousel_Widget extends SiteOrigin_Widget {
 				),
 				'settings' => array(
 					'type' => 'section',
-					'label' => __( 'Image Settings', 'ra-widgets-bundle' ),
+					'label' => __( 'Image Settings', 'amazed-blog-so-widgets' ),
 					'hide' => true,
 					'fields' => array(
 						'size' => array(
 							'type' => 'select',
-							'label' => __( 'Image Size', 'ra-widgets-bundle' ),
-							'options' => rawb_thumb_sizes(),
+							'label' => __( 'Image Size', 'amazed-blog-so-widgets' ),
+							'options' => $sizes,
 							'default' => 'full'
 						),
 					)
@@ -127,9 +143,9 @@ class ABSW_Image_Carousel_Widget extends SiteOrigin_Widget {
         ),
 				'template' => array(
 					'type' => 'select',
-					'label' => __( 'Choose template', 'ra-widgets-bundle' ),
+					'label' => __( 'Choose template', 'amazed-blog-so-widgets' ),
 					'options' => array(
-						'default' => __( 'Default', 'ra-widgets-bundle' )
+						'default' => __( 'Default', 'amazed-blog-so-widgets' )
 					),
 					'default' => 'default'
 				)
