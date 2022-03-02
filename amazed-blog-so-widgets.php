@@ -37,18 +37,6 @@ class ABSW_Widgets {
 		wp_register_script( 'absw-js', plugin_dir_url( __FILE__ ) . 'assets/js/main.min.js', array(), '1.0.0', true );
 
 		wp_enqueue_script( 'absw-js' );
-
-
-
-		// Widget CSS
-		wp_register_style( 'rawb-css', plugin_dir_url( __FILE__ ) . 'public/css/widget.css' );
-		wp_enqueue_style( 'rawb-css' );
-
-		// Owl Carousel JS
-		wp_register_script( 'rawb-owl-carousel-js', plugin_dir_url( __FILE__ ) . 'public/js/owl.carousel.min.js', array( 'jquery' ), null, true );
-
-		// Widget JS
-		wp_register_script( 'rawb-widgets-js', plugin_dir_url( __FILE__ ) . 'public/js/widget.min.js', array( 'jquery' ), null, true );
 	}
 
 	public function absw_widget_folders( $folders ) {
@@ -60,33 +48,10 @@ class ABSW_Widgets {
 	public function absw_filter_active_widgets( $active ) {
 		$active['amazed-blog-posts'] = true;
 		$active['amazed-blog-categories'] = true;
-//rawb-image-carousel
-$active['rawb-image-carousel'] = true;
+		$active['amazed-blog-image-carousel'] = true;
+		
 		return $active;
 	}
 }
 
-
-
-
-// Get an array of registered images
-function rawb_thumb_sizes() {
-	global $_wp_additional_image_sizes;
- 
-    $sizes = array(
-		'full' => __( 'Full', 'ra-widgets-bundle' )
-	);
-
-	$get_intermediate_image_sizes = get_intermediate_image_sizes();
-
-	
-	
-	foreach( $get_intermediate_image_sizes as $_size ) {
-		if ( in_array( $_size, array( 'thumbnail', 'medium', 'large' ) ) ) {
-			$sizes[ $_size ] = ucwords( $_size ); // strtouppercase
-		}
-	}
-
-	return $sizes;
-}
 new ABSW_Widgets();

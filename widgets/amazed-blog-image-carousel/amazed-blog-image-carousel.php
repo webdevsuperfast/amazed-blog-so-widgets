@@ -1,35 +1,57 @@
 <?php
 /*
-Widget Name: Amazed Blog Posts
-Description: A simple image carousel widget using Owl Carousel.
+Widget Name: Amazed Blog Image Carousel
+Description: A simple image carousel widget.
 Author: Amazed Blog
-Author URI: http://rotsenacob.com
+Author URI: http://amazed.blog
 */
 
-class RAWB_Image_Carousel_Widget extends SiteOrigin_Widget {
+class ABSW_Image_Carousel_Widget extends SiteOrigin_Widget {
     function __construct() {
         parent::__construct(
-            'rawb-image-carousel',
-            __( 'RA Image Carousel', 'ra-widgets-bundle' ),
+            'amazed-blog-image-carousel',
+            __( 'Amazed Blog Image Carousel', 'amazed-blog-so-widgets' ),
             array(
-                'description' => __( 'A simple image carousel widget using Owl Carousel', 'ra-widgets-bundle' ),
+                'description' => __( 'A simple image carousel widget.', 'amazed-blog-so-widgets' ),
                 'help' => ''
             ),
             array(),
-            array(
+            false,
+            plugin_dir_path( __FILE__ ) . 'widgets/'
+        );
+    }
+
+		function get_widget_form() {
+      global $_wp_additional_image_sizes;
+ 
+        $sizes = array(
+        'full' => __( 'Full', 'ra-widgets-bundle' )
+      );
+
+      $get_intermediate_image_sizes = get_intermediate_image_sizes();
+
+      
+      
+      foreach( $get_intermediate_image_sizes as $_size ) {
+        if ( in_array( $_size, array( 'thumbnail', 'medium', 'large' ) ) ) {
+          $sizes[ $_size ] = ucwords( $_size ); // strtouppercase
+        }
+      }
+
+			return array(
 				'title' => array(
 					'type' => 'text',
-					'label' => __( 'Title', 'ra-widgets-bundle' ),
+					'label' => __( 'Title', 'amazed-blog-so-widgets' ),
 					'default' => ''
 				),
 				'class' => array(
 					'type' => 'text',
-					'label' => __( 'Class', 'ra-widgets-bundle' ),
+					'label' => __( 'Class', 'amazed-blog-so-widgets' ),
 				),
 				'images' => array(
 					'type' => 'repeater',
-					'label' => __( 'Add Images', 'ra-widgets-bundle' ),
-					'item_name' => __( 'Image', 'ra-widgets-bundle' ),
+					'label' => __( 'Add Images', 'amazed-blog-so-widgets' ),
+					'item_name' => __( 'Image', 'amazed-blog-so-widgets' ),
 					'item_label' => array(
 						'selector' => "[id*='image']",
 						'update_event' => 'change',
@@ -57,113 +79,78 @@ class RAWB_Image_Carousel_Widget extends SiteOrigin_Widget {
 				),
 				'settings' => array(
 					'type' => 'section',
-					'label' => __( 'Image Settings', 'ra-widgets-bundle' ),
+					'label' => __( 'Image Settings', 'amazed-blog-so-widgets' ),
 					'hide' => true,
 					'fields' => array(
 						'size' => array(
 							'type' => 'select',
-							'label' => __( 'Image Size', 'ra-widgets-bundle' ),
-							'options' => rawb_thumb_sizes(),
+							'label' => __( 'Image Size', 'amazed-blog-so-widgets' ),
+							'options' => $sizes,
 							'default' => 'full'
 						),
 					)
 				),
-				'slideshow' => array(
-					'type' => 'section',
-					'label' => __( 'Slideshow Settings', 'ra-widgets-bundle' ),
-					'hide' => true,
-					'fields' => array(
-						'slides' => array(
-							'type' => 'number',
-							'default' => 1,
-							'label' => __( 'Slides', 'ra-widgets-bundle' )
-						),
-						'margin' => array(
-							'type' => 'number',
-							'default' => 0,
-							'label' => __( 'Slide margin', 'ra-widgets-bundle' ),
-						),
-						'duration' => array(
-							'type' => 'number',
-							'default' => 250,
-							'label' => __( 'Duration', 'ra-widgets-bundle' ),
-						),
-						'speed' => array(
-							'type' => 'number',
-							'default' => 250,
-							'label' => __( 'Speed', 'ra-widgets-bundle' ),
-						),
-						'autoplay' => array(
-							'type' => 'checkbox',
-							'default' => false,
-							'label' => __( 'Enable autoplay?', 'ra-widgets-bundle' ),
-						),
-						'navigation' => array(
-							'type' => 'checkbox',
-							'default' => true,
-							'label' => __( 'Display navigation?', 'ra-widgets-bundle' ),
-						),
-						'pagination' => array(
-							'type' => 'checkbox',
-							'default' => false,
-							'label' => __( 'Display pagination?', 'ra-widgets-bundle' ),
-						),
-						'lazyload' => array(
-							'type' => 'checkbox',
-							'default' => false,
-							'label' => __( 'Enable lazyload?', 'ra-widgets-bundle' ),
-						),
-						'autowidth' => array(
-							'type' => 'checkbox',
-							'default' => false,
-							'label' => __( 'Enable autowidth?', 'ra-widgets-bundle' ),
-						),
-						'center' => array(
-							'type' => 'checkbox',
-							'default' => false,
-							'label' => __( 'Center item', 'ra-widgets-bundle' ),
-						),
-						'mergefit' => array(
-							'type' => 'checkbox',
-							'default' => false,
-							'label' => __( 'Fit merged items?', 'ra-widgets-bundle' ),
-						),
-						'loop' => array(
-							'type' => 'checkbox',
-							'default' => true,
-							'label' => __( 'Loop items?', 'ra-widgets-bundle' )
-						)
-					)
-				),
-				'responsive' => array(
-					'type' => 'section',
-					'label' => __( 'Responsive Settings', 'ra-widgets-bundle' ),
-					'hide' => true,
-					'fields' => array(
-						'mobile' => array(
-							'type' => 'number',
-							'label' => __( 'Slides for mobile', 'ra-widgets-bundle' ),
-							'default' => 1
-						),
-						'tablet' => array(
-							'type' => 'number',
-							'label' => __( 'Slides for tablets', 'ra-widgets-bundle' ),
-							'default' => 1
-						),
-					)
-				),
+				'slider' => array(
+          'type' => 'section',
+          'label' => __( 'Slider Settings', 'amazed-blog-so-widgets' ),
+          'hide' => true,
+          'fields' => array(
+            'slider' => array(
+              'type' => 'checkbox',
+              'label' => __( 'Enable Slider', 'amazed-blog-so-widgets' ),
+              'default' => true,
+              'state_emitter' => array(
+                'callback' => 'conditional',
+                'args' => array( 'slider: val' )
+              )
+            ),
+            'slider_space_between' => array(
+              'type' => 'number',
+              'label' => __( 'Space Between', 'amazed-blog-so-widgets' ),
+              'default' => 40,
+              'state_handler' => array(
+                'slider[true]' => array( 'show' )
+              )
+            ),
+            'slider_per_view' => array(
+              'type' => 'number', 
+              'label' => __( 'Slides Per View', 'amazed-blog-so-widgets' ),
+              'default' => 1,
+              'state_handler' => array(
+                'slider[true]' => array( 'show' )
+              )
+            )
+          ),
+        ),
+        'responsive' => array(
+          'type' => 'section',
+          'label' => __( 'Responsive Settings', 'amazed-blog-so-widgets' ),
+          'hide' => true,
+          'fields' => array(
+            'responsive_mobile' => array(
+              'type' => 'number',
+              'label' => __( 'Mobile', 'amazed-blog-so-widgets' ),
+              'default' => 1,
+              'description' => __( 'Slides to show on mobile.', 'amazed-blog-so-widgets' )
+            ),
+            'responsive_tablet' => array(
+              'type' => 'number',
+              'label' => __( 'Tablet', 'amazed-blog-so-widgets' ),
+              'default' => 1,
+              'description' => __( 'Slides to show on tablets.', 'amazed-blog-so-widgets' )
+            ),
+          )
+        ),
 				'template' => array(
 					'type' => 'select',
-					'label' => __( 'Choose template', 'ra-widgets-bundle' ),
+					'label' => __( 'Choose template', 'amazed-blog-so-widgets' ),
 					'options' => array(
-						'default' => __( 'Default', 'ra-widgets-bundle' )
+						'default' => __( 'Default', 'amazed-blog-so-widgets' )
 					),
 					'default' => 'default'
 				)
-			),
-            plugin_dir_path( __FILE__ ) . 'widgets/'
-        );
-    }
+			);
+		}
 
     function get_template_name( $instance ) {
         switch ( $instance['template'] ) {
@@ -180,26 +167,19 @@ class RAWB_Image_Carousel_Widget extends SiteOrigin_Widget {
 
 	function get_template_variables( $instance, $args ) {
 		return array(
-    		'title' => $instance['title'],
+			'title' => $instance['title'],
 			'class' => $instance['class'],
+			'images' => $instance['images'],
 			'size' => $instance['settings']['size'],
-    		'template' => $instance['template'],
-			'slides' => $instance['slideshow']['slides'],
-			'margin' => $instance['slideshow']['margin'],
-			'duration' => $instance['slideshow']['duration'],
-			'speed' => $instance['slideshow']['speed'],
-			'autoplay' => $instance['slideshow']['autoplay'],
-			'navigation' => $instance['slideshow']['navigation'],
-			'pagination' => $instance['slideshow']['pagination'],
-			'autowidth' => $instance['slideshow']['autowidth'],
-			'lazyload' => $instance['slideshow']['autoheight'],
-			'center' => $instance['slideshow']['center'],
-			'mergefit' => $instance['slideshow']['mergefit'],
-			'loop' => $instance['slideshow']['loop'],
-			'slides_mobile' => $instance['responsive']['mobile'],
-			'slides_tablet' => $instance['responsive']['tablet']
+			'template' => $instance['template'],
+			'slider_enable' => $instance['slider']['slider'],
+      'slider_space_between' => $instance['slider']['slider_space_between'],
+      'slider_per_view' => $instance['slider']['slider_per_view'],
+      'responsive_mobile' => $instance['responsive']['responsive_mobile'],
+      'responsive_tablet' => $instance['responsive']['responsive_tablet'],
+			'template' => $instance['template'],
     	);
 	}
 }
 
-siteorigin_widget_register( 'rawb-image-carousel', __FILE__, 'RAWB_Image_Carousel_Widget' );
+siteorigin_widget_register( 'amazed-blog-image-carousel', __FILE__, 'ABSW_Image_Carousel_Widget' );
