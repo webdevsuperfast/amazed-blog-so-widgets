@@ -38,7 +38,7 @@ $attributes = array(
 
         echo $slider_enable ?'<div class="swiper-slide">' : '';
         echo $link ? '<a href="'.$link.'">' : '';
-          echo wp_get_attachment_image( $image['image'], $imageattr['size'] );
+          echo wp_get_attachment_image( $image['image'], $size );
         echo $link ? '</a>' : '';
         echo $slider_enable ? '</div>' : '';
       } ?>
