@@ -62,13 +62,13 @@ $loop = new WP_Query( $post_args ); ?>
 <?php echo $slider_enable ? '<div class="swiper-slide absw-grid absw-grid-cols-none sm:absw-grid-rows-4 sm:absw-grid-cols-3 md:absw-grid-cols-10 lg:absw-grid-cols-20 absw-gap-8">' : ''; ?>
   <?php if ( $loop->have_posts() ) : while ( $loop->have_posts() ) : $loop->the_post(); ?>
   <?php if ( $i % 5 == 1 ) {
-    $class = 'post-featured absw-grid absw-grid-cols-4 absw-gap-4  md:absw-grid-none md:grid-cols-none md:absw-col-span-6 lg:absw-col-span-11 sm:absw-row-span-full';
+    $class = 'post-featured sm:absw-col-span-2 md:absw-col-span-6 lg:absw-col-span-11 sm:absw-row-span-full';
   } else {
     $class = 'absw-grid absw-grid-cols-4 absw-gap-4 sm:absw-col-span-4 md:abswd-col-span-4 lg:absw-col-span-9 sm:absw-row-span-1';
   } ?>
   <div <?php post_class( 'post-wrapper absw-relative ' . $class ); ?>>
       <?php if ( in_array( 'thumbnail', $display ) && has_post_thumbnail() ) : ?>
-        <div class="post-carousel-image absw-relative <?php echo $i % 5 == 1 ? 'absw-col-span-1 md:absw-col-span-full md:absw-w-full md:absw-h-full' : 'absw-col-span-1';?>">
+        <div class="post-carousel-image absw-relative <?php echo $i % 5 == 1 ? 'absw-w-full absw-h-full' : 'absw-col-span-1';?>">
           <?php if ( $i % 5 != 1 ) {
             echo '<a href="' . get_permalink() . '" class="absw-block">';
           } ?>
@@ -80,7 +80,7 @@ $loop = new WP_Query( $post_args ); ?>
               );
             }
             if ( $i % 5 == 1 ) {
-              the_post_thumbnail( 'full', ['class' => 'md:absw-absolute md:!absw-w-full md:!absw-h-full absw-object-cover' ] );
+              the_post_thumbnail( 'full', ['class' => 'absw-absolute !absw-w-full !absw-h-full absw-object-cover' ] );
             } else {
               the_post_thumbnail( $size, ['class' => 'absw-object-cover' ] );
             }
@@ -95,7 +95,7 @@ $loop = new WP_Query( $post_args ); ?>
       <?php endif; ?>
       
       <?php if ( in_array( 'title', $display ) || in_array( 'content', $display ) || in_array( 'info', $display ) || in_array( 'meta', $display ) ) : ?>
-        <div class="content-wrap <?php echo $i % 5 == 1 ? 'absw-col-span-3 md:absw-col-span-full md:absw-absolute md:absw-left-0 md:absw-bottom-0 md:absw-w-full md:absw-z-10' : ( has_post_thumbnail() ? 'absw-col-span-3' : 'absw-col-span-full' ); ?>">
+        <div class="content-wrap <?php echo $i % 5 == 1 ? 'absw-absolute absw-left-0 absw-bottom-0 absw-w-full absw-z-10' : ( has_post_thumbnail() ? 'absw-col-span-3' : 'absw-col-span-full' ); ?>">
           <?php if ( in_array( 'meta', $display) ) : ?>
             <div class="post-metadata">
               <?php the_category(', '); ?>
