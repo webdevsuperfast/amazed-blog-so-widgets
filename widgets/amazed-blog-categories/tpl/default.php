@@ -98,7 +98,7 @@ $catargs['number'] = $catsnum ? (int) $catsnum : 0;
 
         <?php if ( in_array( 'content', $display ) ) : ?>
           <div class="category-info">
-            <p class="category-count"><?php echo $category->count; ?>&nbsp;Articles </p>
+            <p class="category-count"><?php echo $category->count; ?> Articles </p>
           </div>
         <?php endif; ?>
       </div>
