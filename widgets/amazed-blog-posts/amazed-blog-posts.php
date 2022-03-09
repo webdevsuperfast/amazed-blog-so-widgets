@@ -93,6 +93,14 @@ class Amazed_Blog_Posts_Widget extends SiteOrigin_Widget {
                 'args' => array( 'slider: val' )
               )
             ),
+            'slider_navigation' => array(
+              'type' => 'checkbox',
+              'label' => __( 'Enable Navigation', 'amazed-blog-so-widgets' ),
+              'default' => false,
+              'state_handler' => array(
+                'slider[true]' => array( 'show' )
+              )
+            ),
             'slider_space_between' => array(
               'type' => 'number',
               'label' => __( 'Space Between', 'amazed-blog-so-widgets' ),
@@ -171,6 +179,7 @@ class Amazed_Blog_Posts_Widget extends SiteOrigin_Widget {
 			'size' => $instance['structure']['size'],
       'content_type' => $instance['structure']['content_type'],
       'slider_enable' => $instance['slider']['slider'],
+      'slider_enable_navigation' => $instance['slider']['slider_navigation'],
       'slider_space_between' => $instance['slider']['slider_space_between'],
       'slider_per_view' => $instance['slider']['slider_per_view'],
       'responsive_mobile' => $instance['responsive']['responsive_mobile'],
