@@ -1,6 +1,5 @@
 <?php
 $post_args = siteorigin_widget_post_selector_process_query( $post );
-$term = get_term_by( 'slug', $post_args['tax_query'][0]['terms'], 'category' );
 
 $widget_id = $args['widget_id'];
 $widget_id = preg_replace( '/[^0-9]/', '', $widget_id );
@@ -8,16 +7,17 @@ $widget_id = preg_replace( '/[^0-9]/', '', $widget_id );
 $slider_navigation = '';
 $slider_navigation .= '<div class="slider-navigation absw-flex">';
 
-if ( ! empty( $term ) ) {
-  $term_link = get_term_link( $term, 'category' );
-  $slider_navigation .= '<a class="absw-mr-4" href="' . esc_url( $term_link ) . '">View More</a>';
-} else {
-  $term_link = get_permalink( get_option( 'page_for_posts' ) );
-  $slider_navigation .= '<a class="absw-mr-4" href="' . esc_url( $term_link ) . '">View More</a>';
-}
 
-// $slider_navigation .= '<div class="swiper-prev-'. (int) $widget_id .'">'. apply_filters( 'absw_prev_text' , 'Prev' ) .'</div>';
-// $slider_navigation .= '<div class="swiper-next-'. (int) $widget_id .'">'. apply_filters( 'absw_next_text' , 'Next' ) .'</div>';
+$term_link = get_post_type_archive_link( 'post' );
+
+$slider_navigation .= '<a class="absw-mr-4" href="' . esc_url( apply_filters( 'absw_category_link', $term_link ) ) . '">View More</a>';
+
+
+
+if ( $slider_enable_navigation ) :
+  $slider_navigation .= '<div class="swiper-prev-'. (int) $widget_id .'">'. apply_filters( 'absw_prev_text' , 'Prev' ) .'</div>';
+  $slider_navigation .= '<div class="swiper-next-'. (int) $widget_id .'">'. apply_filters( 'absw_next_text' , 'Next' ) .'</div>';
+endif;
 
 $slider_navigation .= '</div>';
 
