@@ -119,6 +119,14 @@ class ABSW_Image_Carousel_Widget extends SiteOrigin_Widget {
               'state_handler' => array(
                 'slider[true]' => array( 'show' )
               )
+              ),
+            'slider_navigation' => array(
+              'type' => 'checkbox',
+              'label' => __( 'Navigation', 'amazed-blog-so-widgets' ),
+              'default' => true,
+              'state_handler' => array(
+                'slider[true]' => array( 'show' )
+              )
             )
           ),
         ),
@@ -175,6 +183,7 @@ class ABSW_Image_Carousel_Widget extends SiteOrigin_Widget {
 			'slider_enable' => $instance['slider']['slider'],
       'slider_space_between' => $instance['slider']['slider_space_between'],
       'slider_per_view' => $instance['slider']['slider_per_view'],
+      'slider_navigation' => $instance['slider']['slider_navigation'],
       'responsive_mobile' => $instance['responsive']['responsive_mobile'],
       'responsive_tablet' => $instance['responsive']['responsive_tablet'],
 			'template' => $instance['template'],
