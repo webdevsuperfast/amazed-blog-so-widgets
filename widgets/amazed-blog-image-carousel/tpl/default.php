@@ -5,16 +5,14 @@ $widget_id = preg_replace( '/[^0-9]/', '', $widget_id );
 $slider_navigation = '';
 $slider_navigation .= '<div class="slider-navigation absw-flex">';
 
-$slider_navigation .= '<div class="swiper-prev-'. (int) $widget_id .'">'. apply_filters( 'absw_image_carousel_prev_text' , 'Prev' ) .'</div>';
-$slider_navigation .= '<div class="swiper-next-'. (int) $widget_id .'">'. apply_filters( 'absw_image_carousel_next_text' , 'Next' ) .'</div>';
+if ( $slider_enable_navigation ) :
+  $slider_navigation .= '<div class="swiper-prev-'. (int) $widget_id .'">'. apply_filters( 'absw_image_carousel_prev_text' , 'Prev' ) .'</div>';
+  $slider_navigation .= '<div class="swiper-next-'. (int) $widget_id .'">'. apply_filters( 'absw_image_carousel_next_text' , 'Next' ) .'</div>';
+endif;
 
 $slider_navigation .= '</div>';
 
 if ( ! $slider_enable ) {
-  $slider_navigation = '';
-}
-
-if ( ! $slider_navigation ) {
   $slider_navigation = '';
 }
 
