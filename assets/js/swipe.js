@@ -10,11 +10,12 @@ for (var i = 0; i < slider.length; i++) {
   const slides = slider[i].dataset.slides;
   const slidesMobile = slider[i].dataset.responsiveMobile;
   const slidesTablet = slider[i].dataset.responsiveTablet;
+  const slidesView = slider[i].dataset.responsiveView;
 
   const spacing = slider[i].dataset.spacing;
   const swiper = new Swiper(slider[i], {
     modules: [Navigation],
-    slidesPerView: parseInt(slidesMobile),
+    slidesPerView: slidesView ? "auto" : parseInt(slidesMobile),
     spaceBetween: parseInt(spacing),
     navigation: {
       nextEl: ".swiper-next-" + instance,
@@ -24,7 +25,7 @@ for (var i = 0; i < slider.length; i++) {
     loop: false,
     breakpoints: {
       768: {
-        slidesPerView: parseInt(slidesTablet),
+        slidesPerView: slidesView ? "auto" : parseInt(slidesTablet),
       },
       992: {
         slidesPerView: parseInt(slides),
