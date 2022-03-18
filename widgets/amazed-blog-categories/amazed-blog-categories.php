@@ -122,6 +122,11 @@ class Amazed_Blog_Categories_Widget extends SiteOrigin_Widget {
               'default' => 1,
               'description' => __( 'Slides to show on tablets.', 'amazed-blog-so-widgets' )
             ),
+            'responsive_view' => array(
+              'type' => 'checkbox',
+              'label' => __( 'Set slides view to auto', 'amazed-blog-so-widgets' ),
+              'default' => false,
+            )
           )
         ),
         'template' => array(
@@ -157,6 +162,7 @@ class Amazed_Blog_Categories_Widget extends SiteOrigin_Widget {
       'slider_per_view' => $instance['slider']['slider_per_view'],
       'responsive_mobile' => $instance['responsive']['responsive_mobile'],
       'responsive_tablet' => $instance['responsive']['responsive_tablet'],
+      'responsive_view' => $instance['responsive']['responsive_view'],
 			'template' => $instance['template'],
       'display' => $instance['structure']['display'],
     	);

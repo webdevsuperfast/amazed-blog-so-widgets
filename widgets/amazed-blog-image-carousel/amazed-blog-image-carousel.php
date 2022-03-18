@@ -147,6 +147,11 @@ class ABSW_Image_Carousel_Widget extends SiteOrigin_Widget {
               'default' => 1,
               'description' => __( 'Slides to show on tablets.', 'amazed-blog-so-widgets' )
             ),
+            'responsive_view' => array(
+              'type' => 'checkbox',
+              'label' => __( 'Set slides view to auto', 'amazed-blog-so-widgets' ),
+              'default' => false,
+            )
           )
         ),
 				'template' => array(
@@ -186,6 +191,7 @@ class ABSW_Image_Carousel_Widget extends SiteOrigin_Widget {
       'slider_enable_navigation' => $instance['slider']['slider_navigation'],
       'responsive_mobile' => $instance['responsive']['responsive_mobile'],
       'responsive_tablet' => $instance['responsive']['responsive_tablet'],
+      'responsive_view' => $instance['responsive']['responsive_view'],
 			'template' => $instance['template'],
     	);
 	}
