@@ -68,7 +68,7 @@ $catargs['number'] = $catsnum ? (int) $catsnum : 0;
   <?php echo $slider_enable ? '<div class="swiper-wrapper">' : ''; ?>
   <?php if ( $categories ) : ?>
     <?php foreach( $categories as $category ) : ?>
-      <div class="<?php echo $slider_enable ? 'swiper-slide' : ''; ?> category category-<?php echo $category->term_slug; ?>">
+      <div class="<?php echo $slider_enable ? 'swiper-slide' : ''; ?> <?php echo $responsive_view ? ' view-auto' : ''; ?> category">
         <?php if ( in_array( 'thumbnail', $display ) && function_exists( 'z_taxonomy_image_url' ) ) : ?>
         <div class="category-image absw-overflow-hidden absw-shadow absw-rounded absw-mb-5 absw-leading-none">
           <?php 
@@ -80,7 +80,7 @@ $catargs['number'] = $catsnum ? (int) $catsnum : 0;
           }
           
           if ( get_option( 'z_taxonomy_image' . $category->term_id ) ) :
-            echo '<a class="absw-block absw-leading-none relative" href="' . get_term_link( $category->term_id ) . '">';
+            echo '<a class="relative absw-block absw-leading-none" href="' . get_term_link( $category->term_id ) . '">';
             echo '<img class="absw-block absw-w-full absw-h-48 absw-object-cover" src=" '. z_taxonomy_image_url( $category->term_id, $size ) .'" alt="'. $category->name .'">';
             echo '</a>';
           endif; 

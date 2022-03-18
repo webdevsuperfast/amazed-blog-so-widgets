@@ -49,7 +49,10 @@ $attributes = array(
     <?php echo $slider_enable ? '<div class="swiper-wrapper">' : ''; ?>
       <?php foreach( $images as $image ) {
         $link = sow_esc_url( $image['link'] );
-        echo $slider_enable ?'<div class="swiper-slide">' : '';
+        $classes = [];
+        $classes[] = $slider_enable ? 'swiper-slide' : '';
+        $classes[] = $responsive_view ? 'view-auto' : '';
+        echo $slider_enable ? '<div class="' . esc_attr( implode( ' ', $classes ) ) . '">' : '';
         echo $link ? '<a href="'.$link.'">' : '';
           echo wp_get_attachment_image( $image['image'], $size, '', array( 'class' => 'absw-object-cover !absw-w-full' ) );
         echo $link ? '</a>' : '';

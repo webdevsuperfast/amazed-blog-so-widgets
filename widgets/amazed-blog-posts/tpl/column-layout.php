@@ -50,6 +50,7 @@ $attributes = array(
     'data-slides' => (int)$slider_per_view,
     'data-responsive-mobile' => (int)$responsive_mobile,
     'data-responsive-tablet' => (int)$responsive_tablet,
+    'data-responsive-view' => $responsive_view
 ); ?>
 
 <?php
@@ -68,6 +69,7 @@ $loop = new WP_Query( $post_args ); ?>
         'absw-bg-gray-100'
       );
       $classes[] = $slider_enable ? 'swiper-slide' : '';
+      $classes[] = $responsive_view ? 'view-auto' : '';
     ?>
     <div <?php post_class( $classes ); ?>>
       <?php if ( in_array( 'thumbnail', $display ) && has_post_thumbnail() ) : ?>
