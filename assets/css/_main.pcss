@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.amazed-blog-categories,
+.amazed-blog-image-carousel,
+.amazed-blog-posts-column {
+  .swiper-slide {
+    &.swiper-slide {
+      &.view-auto {
+        &.view-auto {
+          @apply absw-w-5/6 lg:absw-w-auto;
+        }
+      }
+    }
+  }
+}
