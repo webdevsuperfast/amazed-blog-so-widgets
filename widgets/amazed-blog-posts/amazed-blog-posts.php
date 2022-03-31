@@ -116,6 +116,14 @@ class Amazed_Blog_Posts_Widget extends SiteOrigin_Widget {
               'state_handler' => array(
                 'slider[true]' => array( 'show' )
               )
+            ),
+            'slider_rewind' => array(
+              'type' => 'checkbox',
+              'label' => __( 'Enable rewind slides', 'amazed-blog-so-widgets' ),
+              'default' => false,
+              'state_handler' => array(
+                'slider[true]' => array( 'show' )
+              )
             )
           ),
         ),
@@ -187,6 +195,7 @@ class Amazed_Blog_Posts_Widget extends SiteOrigin_Widget {
       'slider_enable_navigation' => $instance['slider']['slider_navigation'],
       'slider_space_between' => $instance['slider']['slider_space_between'],
       'slider_per_view' => $instance['slider']['slider_per_view'],
+      'slider_rewind' => $instance['slider']['slider_rewind'],
       'responsive_mobile' => $instance['responsive']['responsive_mobile'],
       'responsive_tablet' => $instance['responsive']['responsive_tablet'],
       'responsive_view' => $instance['responsive']['responsive_view'],
