@@ -48,8 +48,10 @@ $attributes = array(
     'data-instance' => (int)$widget_id,
     'data-spacing' => (int)$slider_space_between,
     'data-slides' => (int)$slider_per_view,
+    'data-rewind' => $slider_rewind,
     'data-responsive-mobile' => (int)$responsive_mobile,
     'data-responsive-tablet' => (int)$responsive_tablet,
+    'data-responsive-view' => $responsive_view
 );
 
 $catargs = array(
