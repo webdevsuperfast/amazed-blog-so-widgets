@@ -21,14 +21,18 @@ for (var i = 0; i < slider.length; i++) {
       nextEl: ".swiper-next-" + instance,
       prevEl: ".swiper-prev-" + instance,
     },
-    rewind: false,
+    rewind: true,
     loop: false,
+    centerInsufficientSlides: true,
+    slidesPerGroupAuto: slidesView ? true : false,
     breakpoints: {
       768: {
         slidesPerView: slidesView ? "auto" : parseInt(slidesTablet),
+        slidesPerGroupAuto: slidesView ? true : false,
       },
       992: {
         slidesPerView: parseInt(slides),
+        slidesPerGroup: parseInt(slides),
       },
     },
   });
